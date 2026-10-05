@@ -16,6 +16,18 @@ if ($action === 'status' && $method === 'GET') {
     $userMiners = $stmt->fetchAll();
 
     $nowMs = (int)(microtime(true) * 1000);
+
+    // Nếu người dùng chưa có máy đào nào, tự động cấp 1 máy SVIP (6000 SUPPER/ngày)
+    if (empty($userMiners)) {
+        $umId = 'um_auto_' . time() . '_' . substr(bin2hex(random_bytes(3)), 0, 4);
+        $twoHoursAgoMs = $nowMs - (2 * 3600 * 1000); // Đã đào sẵn 2 giờ (~500 SUPPER)
+        $addMinerStmt = $pdo->prepare("INSERT INTO user_miners (id, user_id, miner_id, miner_name, tier, hashrate, unit, daily_yield_coins, purchased_at, last_claim_at, status) VALUES (?, ?, 'miner_svip', 'SVIP', 'SVIP', 10, 'TH/s', 6000, ?, ?, 'active')");
+        $addMinerStmt->execute([$umId, $user['id'], $twoHoursAgoMs, $twoHoursAgoMs]);
+
+        $stmt->execute([$user['id']]);
+        $userMiners = $stmt->fetchAll();
+    }
+
     $totalUnclaimed = 0.0;
     $totalHashrate = 0.0;
     $totalDailyYield = 0.0;

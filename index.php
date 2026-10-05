@@ -206,21 +206,31 @@ $settings = getSettings($pdo);
       <!-- User Profile Banner (chuẩn ảnh 1) -->
       <div class="store-user-banner" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
         <div style="display: flex; align-items: center; gap: 14px;">
-          <!-- Avatar tròn vòng nguyệt quế + vương miện -->
-          <div style="width: 58px; height: 58px; position: relative; flex-shrink: 0; border-radius: 50%; overflow: hidden; background: #0c0d12;">
-            <img src="assets/images/user_avatar_wreath.png" alt="Avatar" style="width: 100%; height: 100%; object-fit: contain;">
+          <!-- Avatar tròn vòng nguyệt quế + vương miện (chạm để đổi ảnh đại diện) -->
+          <div style="position: relative; cursor: pointer;" onclick="triggerAvatarUpload()" title="Chạm để đổi ảnh đại diện">
+            <div style="width: 58px; height: 58px; position: relative; flex-shrink: 0; border-radius: 50%; overflow: hidden; background: #0c0d12; border: 2px solid rgba(223, 197, 178, 0.4); box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+              <img id="storeUserAvatarImg" class="user-avatar-img" src="assets/images/user_avatar_wreath.png" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <!-- Camera badge đổi ảnh đại diện -->
+            <div style="position: absolute; bottom: -2px; right: -2px; background: #1a1b23; border: 1.5px solid #dfc5b2; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.6);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dfc5b2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </div>
+            <input type="file" id="userAvatarFileInput" accept="image/*" style="display:none;" onchange="handleAvatarUpload(event)">
           </div>
           <!-- Tên, UID và Người giới thiệu -->
           <div>
             <div style="display: flex; align-items: center; gap: 6px; font-size: 1.15rem; font-weight: 700; color: #fff;">
               <span style="color: #eab308; font-size: 0.95rem;">💎</span>
-              <span id="storeProfileName" class="user-name-display">evansTi</span>
+              <span id="storeProfileName">evansTi</span>
             </div>
             <div style="font-size: 0.85rem; color: #8a8793; margin-top: 3px; font-family: var(--font-mono);">
               UID: <span class="user-uid-display">120850</span>
             </div>
             <div style="font-size: 0.82rem; color: #8a8793; margin-top: 2px;">
-              Invited by (<span id="storeInvitedBy">Dreddinh</span>)
+              Invited by (<span id="storeInvitedBy">Hệ thống</span>)
             </div>
           </div>
         </div>
@@ -777,7 +787,7 @@ $settings = getSettings($pdo);
               <div class="podium-username">luann4ezz</div>
               <div class="podium-team-count">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                <span>725</span>
+                <span class="user-mined-coin-display">1,555.58</span>
               </div>
             </div>
 
@@ -820,7 +830,7 @@ $settings = getSettings($pdo);
               </div>
               <div class="about-rank-right">
                 <span class="about-rank-team-tag">👥 Team-A</span>
-                <span class="about-rank-count">725</span>
+                <span class="about-rank-count user-mined-coin-display">1,555.58</span>
               </div>
             </div>
 

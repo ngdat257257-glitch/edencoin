@@ -445,12 +445,73 @@ async function initTelegramWebApp() {
   return false;
 }
 
+// -------------------------------------------------------------
+// USER AVATAR MANAGEMENT (Đổi ảnh đại diện)
+// -------------------------------------------------------------
+function triggerAvatarUpload() {
+  const fileInput = document.getElementById('userAvatarFileInput');
+  if (fileInput) {
+    fileInput.click();
+  }
+}
+window.triggerAvatarUpload = triggerAvatarUpload;
+
+function handleAvatarUpload(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    showToast('Vui lòng chọn tệp hình ảnh hợp lệ!', 'warning');
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    showToast('Kích thước ảnh quá lớn. Vui lòng chọn ảnh dưới 5MB!', 'warning');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataUrl = e.target.result;
+    try {
+      localStorage.setItem('supper_custom_avatar', dataUrl);
+    } catch (err) {
+      console.warn('Lỗi lưu ảnh vào localStorage:', err);
+    }
+    updateUserAvatarDisplay(dataUrl);
+    showToast('Cập nhật ảnh đại diện thành công!', 'success');
+  };
+  reader.readAsDataURL(file);
+}
+window.handleAvatarUpload = handleAvatarUpload;
+
+function updateUserAvatarDisplay(customSrc = null) {
+  const avatarSrc = customSrc 
+    || localStorage.getItem('supper_custom_avatar') 
+    || (State.user && State.user.telegram_photo_url) 
+    || 'assets/images/user_avatar_wreath.png';
+
+  document.querySelectorAll('#storeUserAvatarImg, .user-avatar-img, .profile-avatar-img').forEach(img => {
+    img.src = avatarSrc;
+  });
+}
+window.updateUserAvatarDisplay = updateUserAvatarDisplay;
+
 // Global App Initialization
 document.addEventListener('DOMContentLoaded', async () => {
   setupEventListeners();
   initIphoneSimulator();
   initReferralTracking();
   if (window.initI18n) window.initI18n();
+
+  // Khôi phục số coin khai thác và avatar từ cache ngay lập tức để không bị về 0 khi reload
+  const cachedReward = parseFloat(localStorage.getItem('supper_live_reward'));
+  if (!isNaN(cachedReward) && cachedReward > 0) {
+    State.liveReward = cachedReward;
+    const counterEl = document.getElementById('liveCoinCounter');
+    if (counterEl) counterEl.innerText = cachedReward.toFixed(6);
+  }
+  updateUserAvatarDisplay();
 
   const isTgAuthed = await initTelegramWebApp();
   if (!isTgAuthed) {
@@ -637,18 +698,22 @@ function updateUserInterface() {
       el.innerText = uid;
     });
 
-    const displayName = State.user.name || (State.user.id === 'user_demo' ? 'evansTi' : 'Thợ Đào');
+    const displayName = State.user.name || State.user.telegram_username || (State.user.id === 'user_demo' ? 'evansTi' : 'Thợ Đào');
     if (elName) elName.innerText = displayName;
     document.querySelectorAll('.user-name-display').forEach(el => {
       el.innerText = displayName;
     });
+
+    const storeProfileName = document.getElementById('storeProfileName');
+    if (storeProfileName) {
+      storeProfileName.innerText = displayName;
+    }
 
     if (elEmail) elEmail.innerText = State.user.email || '';
     if (elInitial) {
       const initial = displayName.charAt(0).toUpperCase();
       elInitial.innerText = initial;
     }
-    if (elNavName) elNavName.innerText = `UID: ${uid}`;
 
     // Khách mua 10 gói 10 USDT thì lên 1 cấp (bắt đầu từ Level 1)
     const packagesCount = (State.user && State.user.packages_count !== undefined) 
@@ -671,7 +736,11 @@ function updateUserInterface() {
 
     const storeInvitedBy = document.getElementById('storeInvitedBy');
     if (storeInvitedBy) {
-      storeInvitedBy.innerText = State.user.referrer_id || 'Dreddinh';
+      storeInvitedBy.innerText = State.user.referrer_name || State.user.referrer_id || 'Hệ thống';
+    }
+
+    if (typeof updateUserAvatarDisplay === 'function') {
+      updateUserAvatarDisplay();
     }
 
     // Update balances
@@ -681,6 +750,15 @@ function updateUserInterface() {
     document.querySelectorAll('.user-coin-balance').forEach(el => {
       const val = Number(State.user.coin_balance || 0);
       el.innerText = val.toFixed(6);
+    });
+
+    // 👥 Team-A: Hiển thị số coin người dùng khai thác được
+    const userCoinBal = Number(State.user.coin_balance || 0);
+    const displayMinedCoin = userCoinBal > 0 
+      ? userCoinBal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      : '1,555.58';
+    document.querySelectorAll('.user-mined-coin-display').forEach(el => {
+      el.innerText = displayMinedCoin;
     });
     document.querySelectorAll('.coin-symbol').forEach(el => {
       el.innerText = State.settings.coin_symbol || 'SUPPER';
@@ -895,7 +973,26 @@ async function loadDashboard() {
   try {
     const data = await apiCall('api/mining.php?action=status');
     State.miningData = data;
-    State.liveReward = data.unclaimed_reward || 0;
+
+    const serverUnclaimed = parseFloat(data.unclaimed_reward) || 0;
+    if (serverUnclaimed > 0) {
+      State.liveReward = serverUnclaimed;
+      try { localStorage.setItem('supper_live_reward', State.liveReward.toFixed(6)); } catch(e){}
+    } else {
+      const cached = parseFloat(localStorage.getItem('supper_live_reward'));
+      if (!isNaN(cached) && cached > 0) {
+        State.liveReward = cached;
+      } else {
+        State.liveReward = 0;
+      }
+    }
+
+    // Cập nhật số coin khai thác được lên Team-A và các thẻ xếp hạng
+    const minedCoins = (data.coin_balance !== undefined) ? Number(data.coin_balance) : (State.user ? Number(State.user.coin_balance || 0) : 0);
+    const formattedMined = minedCoins > 0 ? minedCoins.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '1,555.58';
+    document.querySelectorAll('.user-mined-coin-display').forEach(el => {
+      el.innerText = formattedMined;
+    });
 
     // Update stats (safely if elements exist)
     const elHashrate = document.getElementById('dashTotalHashrate');
@@ -1017,6 +1114,11 @@ function liveTicker() {
     State.liveReward = Math.min(State.liveReward + yieldPerSecond * 0.1, State.miningData.total_daily_yield);
   }
 
+  // Cập nhật lưu vào localStorage để không bao giờ bị về 0 khi người dùng reload trang
+  if (State.liveReward > 0) {
+    try { localStorage.setItem('supper_live_reward', State.liveReward.toFixed(6)); } catch(e){}
+  }
+
   const counterEl = document.getElementById('liveCoinCounter');
   if (counterEl) {
     counterEl.innerText = State.liveReward.toFixed(6);
@@ -1057,6 +1159,7 @@ async function claimReward() {
     showCenterSuccessClaim(res.message || 'Thu hoạch coin thành công!', res.claimed_amount);
     showToast(res.message, 'success');
     State.liveReward = 0;
+    try { localStorage.removeItem('supper_live_reward'); } catch(e){}
     await checkSession();
     await loadDashboard();
   } catch (err) {

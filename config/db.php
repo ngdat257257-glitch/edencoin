@@ -259,7 +259,7 @@ function getCurrentUser(PDO $pdo): ?array {
         return null;
     }
 
-    $stmt = $pdo->prepare("SELECT id, uid, email, name, role, usdt_balance, coin_balance, created_at FROM users WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT id, uid, email, name, role, usdt_balance, coin_balance, created_at, telegram_id, telegram_username, telegram_photo_url, referrer_id FROM users WHERE id = ?");
     $stmt->execute([$token]);
     $user = $stmt->fetch();
     return $user ?: null;
