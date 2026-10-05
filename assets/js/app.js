@@ -975,11 +975,15 @@ function updateClaimButtonState() {
   }
 
   if (isMiningCycleComplete()) {
-    // Đã đủ 24h: máy dừng đào, chờ khách Claim
+    // Đã đủ 24h: máy dừng đào, chờ khách Claim (chữ Claim màu đen)
     State.miningData.can_claim = true;
     btn.disabled = false;
     btn.classList.add('ready');
-    if (textEl) textEl.innerText = 'Claim';
+    if (textEl) {
+      textEl.innerText = 'Claim';
+      textEl.style.color = '#000000';
+      textEl.style.fontWeight = '800';
+    }
     if (countdownEl) countdownEl.innerText = '00H 00M 00S';
     if (labelEl) labelEl.innerText = 'Mining stopped • Claim to restart';
   } else {
@@ -990,7 +994,11 @@ function updateClaimButtonState() {
     const secs = String(totalSec % 60).padStart(2, '0');
 
     btn.disabled = true;
-    if (textEl) textEl.innerText = 'Mining';
+    if (textEl) {
+      textEl.innerText = 'Mining';
+      textEl.style.color = '';
+      textEl.style.fontWeight = '';
+    }
     if (countdownEl) countdownEl.innerText = `${hrs}H ${mins}M ${secs}S`;
     if (labelEl) labelEl.innerText = 'Time until next start';
   }
@@ -1046,6 +1054,7 @@ async function claimReward() {
 
   try {
     const res = await apiCall('api/mining.php?action=claim', 'POST');
+    showCenterSuccessClaim(res.message || 'Thu hoạch coin thành công!', res.claimed_amount);
     showToast(res.message, 'success');
     State.liveReward = 0;
     await checkSession();
@@ -1055,6 +1064,84 @@ async function claimReward() {
   } finally {
     if (btn) btn.disabled = false;
   }
+}
+
+// Thông báo thành công hiển thị chính giữa màn hình khi Claim
+function showCenterSuccessClaim(message, amount) {
+  const old = document.getElementById('centerClaimModal');
+  if (old) old.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'centerClaimModal';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+  `;
+
+  overlay.innerHTML = `
+    <div style="
+      background: linear-gradient(145deg, #13151f, #090a10);
+      border: 1.5px solid rgba(245, 158, 11, 0.6);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.95), 0 0 35px rgba(245, 158, 11, 0.35);
+      border-radius: 24px;
+      padding: 30px 22px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      transform: scale(1);
+    ">
+      <div style="width: 72px; height: 72px; margin: 0 auto 16px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">
+        ✅
+      </div>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #fbbf24; margin-bottom: 8px; letter-spacing: -0.01em;">
+        THU HOẠCH THÀNH CÔNG!
+      </h3>
+      <p style="font-size: 0.95rem; color: #ead9cf; margin-bottom: 20px; line-height: 1.5;">
+        ${message}
+      </p>
+      <button type="button" onclick="document.getElementById('centerClaimModal').remove()" style="
+        width: 100%;
+        height: 48px;
+        background: linear-gradient(135deg, #dfc5b2, #fbbf24);
+        color: #000000 !important;
+        font-weight: 800;
+        font-size: 1rem;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+      ">
+        Xác Nhận & Đóng
+      </button>
+    </div>
+  `;
+
+  overlay.onclick = (e) => {
+    if (e.target === overlay) overlay.remove();
+  };
+
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    if (overlay && overlay.parentNode) {
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 0.25s';
+      setTimeout(() => overlay.remove(), 250);
+    }
+  }, 4500);
 }
 window.claimReward = claimReward;
 

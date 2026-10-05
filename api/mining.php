@@ -67,8 +67,8 @@ if ($action === 'status' && $method === 'GET') {
 
     jsonResponse([
         'server_time' => $nowMs,
-        'coin_symbol' => $settings['coin_symbol'] ?? 'MNX',
-        'coin_name' => $settings['coin_name'] ?? 'Minex Coin',
+        'coin_symbol' => $settings['coin_symbol'] ?? 'SUPPER',
+        'coin_name' => $settings['coin_name'] ?? 'SUPPER AI Token',
         'coin_price_usdt' => (float)($settings['coin_price_usdt'] ?? 0.001),
         'coin_balance' => (float)$user['coin_balance'],
         'usdt_balance' => (float)$user['usdt_balance'],
@@ -151,7 +151,7 @@ if ($action === 'claim' && $method === 'POST') {
             $txId,
             $user['id'],
             $formattedClaim,
-            $settings['coin_symbol'] ?? 'MNX',
+            $settings['coin_symbol'] ?? 'SUPPER',
             json_encode([
                 'note' => "Nhận sản lượng từ " . count($userMiners) . " máy đào",
                 'miners_count' => count($userMiners)
@@ -162,7 +162,7 @@ if ($action === 'claim' && $method === 'POST') {
         $pdo->commit();
 
         jsonResponse([
-            'message' => "Nhận thành công +{$formattedClaim} " . ($settings['coin_symbol'] ?? 'MNX') . " vào ví!",
+            'message' => "Nhận thành công +{$formattedClaim} " . ($settings['coin_symbol'] ?? 'SUPPER') . " vào ví!",
             'claimed_amount' => $formattedClaim,
             'coin_balance' => $newCoinBalance,
             'server_time' => $nowMs

@@ -2260,14 +2260,17 @@ p, span, label, div {
   transition: all 0.25s ease;
 }
 
-/* Trạng thái đủ 24h: sẵn sàng Claim để chạy tiếp */
-.mine-action-btn.ready {
+/* Trạng thái đủ 24h: sẵn sàng Claim để chạy tiếp (Chữ Claim màu đen nổi bật) */
+.mine-action-btn.ready,
+.mine-action-btn.ready #btnClaimText,
+#btnClaimReward.ready,
+#btnClaimReward.ready #btnClaimText {
   background: #ead1bf;
-  color: #1e1b18;
+  color: #000000 !important;
   border-color: transparent;
-  font-weight: 700;
+  font-weight: 800 !important;
   cursor: pointer;
-  box-shadow: 0 0 22px rgba(234, 209, 191, 0.35);
+  box-shadow: 0 0 22px rgba(234, 209, 191, 0.45);
   animation: minePulse 1.8s ease-in-out infinite;
 }
 
