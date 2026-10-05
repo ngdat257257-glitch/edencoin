@@ -1,0 +1,3445 @@
+:root {
+  --bg-main: #000000;
+  --bg-card: #000000;
+  --bg-card-solid: #000000;
+  --bg-card-hover: #080808;
+  --bg-input: #000000;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(245, 158, 11, 0.4);
+  --border-green: rgba(245, 158, 11, 0.4);
+
+  --primary: #f59e0b;
+  --primary-glow: rgba(245, 158, 11, 0.35);
+  --primary-hover: #fbbf24;
+  --secondary: #d97706;
+  --accent-gold: #fbbf24;
+  --accent-danger: #f43f5e;
+  --accent-purple: #8b5cf6;
+
+  --text-main: #ead9cf;
+  --text-muted: #8e8c94;
+  --text-dim: #7c7a82;
+
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace, monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --shadow-card: 0 10px 30px -6px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 20px rgba(245, 158, 11, 0.35);
+  --shadow-glow-green: 0 0 20px rgba(245, 158, 11, 0.35);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #000000 !important;
+  background-image: none !important;
+  background: #000000 !important;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: 0.15s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* App Wrapper */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: #000000 !important;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 20px;
+}
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.45);
+}
+
+.brand-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff 40%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.nav-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Balance Pill */
+.balance-pill-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(14, 20, 32, 0.9);
+  padding: 3px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+}
+
+.balance-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.balance-pill.usdt {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.balance-pill.coin {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Language Selector (10 Countries) */
+.lang-selector-dropdown {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  padding: 6px 11px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
+}
+
+.lang-flag {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.lang-arrow {
+  transition: transform 0.2s ease;
+  opacity: 0.7;
+}
+
+.lang-selector-dropdown.open .lang-arrow {
+  transform: rotate(180deg);
+}
+
+.lang-menu {
+  position: fixed !important;
+  top: 58px !important;
+  right: 16px !important;
+  min-width: 220px !important;
+  max-width: 280px !important;
+  background: #0e0d14 !important;
+  border: 1px solid rgba(223, 197, 178, 0.4) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 25px rgba(223, 197, 178, 0.15) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  z-index: 10050 !important;
+  padding: 8px !important;
+  max-height: 420px !important;
+  overflow-y: auto !important;
+}
+
+/* Modal Language Option Button */
+.lang-modal-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 12px 14px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.lang-modal-btn:hover,
+.lang-modal-btn:active {
+  background: rgba(223, 197, 178, 0.12) !important;
+  border-color: rgba(223, 197, 178, 0.45) !important;
+  transform: translateX(2px) !important;
+}
+
+.lang-modal-btn.active {
+  background: rgba(223, 197, 178, 0.16) !important;
+  border-color: #dfc5b2 !important;
+  box-shadow: 0 0 16px rgba(223, 197, 178, 0.2) !important;
+}
+
+#toastContainer {
+  pointer-events: none !important;
+}
+
+#toastContainer .alert {
+  pointer-events: auto !important;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.lang-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.lang-item.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.lang-item-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* Glass Cards */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+  min-height: 38px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.btn-success:hover:not(:disabled) {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+}
+
+.btn-gold:hover:not(:disabled) {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn-danger {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  min-height: 32px;
+  border-radius: 6px;
+}
+
+.btn-lg {
+  padding: 13px 24px;
+  font-size: 1.02rem;
+  min-height: 48px;
+  border-radius: var(--radius-md);
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.col-12 { grid-column: span 12; }
+.col-8 { grid-column: span 8; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+
+/* Stats Card */
+.stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon.cyan { background: rgba(245, 158, 11, 0.14); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.stat-icon.green { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.25); }
+.stat-icon.gold { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.25); }
+.stat-icon.purple { background: rgba(139, 92, 246, 0.12); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.25); }
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.stat-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: #fff;
+  margin: 2px 0;
+}
+
+.stat-sub {
+  font-size: 0.76rem;
+  color: var(--text-dim);
+}
+
+/* Mining Engine Simulation Box */
+.mining-rig-box {
+  background: #000000 !important;
+  border: 1px solid var(--border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fbbf24;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 8px #fbbf24;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+
+.visualizer-stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 24px 16px;
+  background: #000000 !important;
+  border-radius: var(--radius-md);
+  margin: 20px 0;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.fan {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 158, 11, 0.45);
+  background: radial-gradient(circle, #78350f 20%, #030712 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fan-spinner {
+  width: 48px;
+  height: 48px;
+  border-top: 3px solid #fbbf24;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid #f59e0b;
+  border-left: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+.fan.idle .fan-spinner {
+  animation-play-state: paused;
+  opacity: 0.25;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCoinGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Coin Stage & 3D Golden Lighting Around Round Coin Frame */
+.coin-aura-stage {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 14px auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+}
+
+/* 1. Behind: Ambient Soft Golden Aura */
+.coin-aura-glow {
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.7) 0%, rgba(251, 191, 36, 0.4) 40%, rgba(217, 119, 6, 0.08) 65%, transparent 75%);
+  filter: blur(18px);
+  animation: goldAuraPulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 2. Behind: Rotating Golden Corona Rays */
+.coin-corona-rays {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, 
+    rgba(251, 191, 36, 0.45) 0deg, 
+    transparent 45deg, 
+    rgba(245, 158, 11, 0.55) 90deg, 
+    transparent 135deg, 
+    rgba(251, 191, 36, 0.45) 180deg, 
+    transparent 225deg, 
+    rgba(245, 158, 11, 0.55) 270deg, 
+    transparent 315deg, 
+    rgba(251, 191, 36, 0.45) 360deg
+  );
+  filter: blur(10px);
+  animation: rotateGoldCorona 14s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3. 3D Golden Orbit Ring 1 (Tilted 3D orbit around the round coin) */
+.coin-orbit-ring-1 {
+  position: absolute;
+  width: 215px;
+  height: 215px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(251, 191, 36, 0.65);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.55), inset 0 0 10px rgba(251, 191, 36, 0.3);
+  transform: rotateX(72deg) rotateY(15deg);
+  animation: orbitSpin1 8s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 4. 3D Golden Orbit Ring 2 (Cross-angle 3D orbit) */
+.coin-orbit-ring-2 {
+  position: absolute;
+  width: 198px;
+  height: 198px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(254, 240, 138, 0.5);
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.45);
+  transform: rotateX(62deg) rotateY(-25deg);
+  animation: orbitSpin2 11s linear infinite reverse;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 5. Golden Sparkles around the round coin */
+.coin-sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fbbf24, 0 0 20px #f59e0b;
+  pointer-events: none;
+  z-index: 4;
+}
+.coin-sparkle-1 { top: 6px; left: 24px; animation: sparkleBlink 2.2s infinite ease-in-out; }
+.coin-sparkle-2 { top: 18px; right: 20px; animation: sparkleBlink 2.8s infinite ease-in-out 0.7s; }
+.coin-sparkle-3 { bottom: 20px; left: 18px; animation: sparkleBlink 2.5s infinite ease-in-out 1.2s; }
+.coin-sparkle-4 { bottom: 8px; right: 24px; animation: sparkleBlink 3s infinite ease-in-out 1.8s; }
+
+/* 6. Round Coin Frame: KHUNG ẢNH TRÒN XUNG QUANH ĐỒNG COIN */
+.coin-pure-container {
+  position: relative;
+  z-index: 2;
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border: 2px solid rgba(251, 191, 36, 0.8);
+  box-shadow: 0 0 26px rgba(245, 158, 11, 0.65), inset 0 0 16px rgba(251, 191, 36, 0.35);
+  animation: coinGentleFloat 3.5s ease-in-out infinite;
+  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coin-pure-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.coin-pure-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(245, 158, 11, 0.85), inset 0 0 22px rgba(251, 191, 36, 0.5);
+}
+
+/* 7. 3D Dynamic Drop Shadow on Ground */
+.coin-ground-shadow {
+  position: absolute;
+  bottom: -16px;
+  width: 115px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.85) 0%, rgba(245, 158, 11, 0.35) 45%, transparent 75%);
+  filter: blur(5px);
+  z-index: 0;
+  animation: shadowPulseScale 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Keyframes */
+@keyframes coinGentleFloat {
+  0%, 100% {
+    transform: translateY(0px); /* Pure vertical float only, NO angle tilt, NO skew */
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes orbitSpin1 {
+  0% { transform: rotateX(72deg) rotateY(15deg) rotateZ(0deg); }
+  100% { transform: rotateX(72deg) rotateY(15deg) rotateZ(360deg); }
+}
+
+@keyframes orbitSpin2 {
+  0% { transform: rotateX(62deg) rotateY(-25deg) rotateZ(0deg); }
+  100% { transform: rotateX(62deg) rotateY(-25deg) rotateZ(360deg); }
+}
+
+@keyframes rotateGoldCorona {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes sparkleBlink {
+  0%, 100% { opacity: 0.25; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes shadowPulseScale {
+  0%, 100% { transform: scale(1); opacity: 0.65; }
+  50% { transform: scale(0.8); opacity: 0.3; }
+}
+
+@keyframes goldAuraPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.65;
+    filter: blur(14px);
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0.98;
+    filter: blur(20px);
+  }
+}
+
+.counter-digits {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #fbbf24;
+  text-shadow: 0 0 18px rgba(245, 158, 11, 0.65);
+  letter-spacing: -0.03em;
+}
+
+/* Forms & Inputs */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.form-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  color: #fff;
+  font-size: 0.94rem;
+  transition: 0.15s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+}
+
+/* Miners Store Cards */
+.miner-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--radius-md);
+}
+
+.miner-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-glow);
+}
+
+.miner-badge-tier {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.tier-starter { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; }
+.tier-performance { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.tier-enterprise { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.tier-titan { background: linear-gradient(90deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2)); color: #fbbf24; }
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  font-size: 0.85rem;
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-name { color: var(--text-muted); }
+.spec-val { font-weight: 600; color: #fff; font-family: var(--font-mono); }
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 520px;
+  background: var(--bg-card-solid);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 4px;
+}
+
+.modal-close:hover { color: #fff; }
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  min-width: 520px;
+}
+
+.custom-table th {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.custom-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #fff;
+}
+
+.custom-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.badge-pending { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-completed, .badge-approved { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-rejected { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+
+/* Alerts */
+.alert {
+  padding: 12px 15px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.alert-info { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: #fcd34d; }
+.alert-warning { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: #fcd34d; }
+.alert-error { background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.25); color: #fda4af; }
+.alert-success { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: #fcd34d; }
+
+/* Mobile Navigation Bottom Bar */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  background: #000000 !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-subtle);
+  padding: 6px 12px;
+  justify-content: space-around;
+}
+
+.bottom-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.66rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 4px;
+  border-radius: 8px;
+  transition: color 0.15s ease;
+  min-width: 46px;
+  flex: 1;
+}
+
+.bottom-nav-btn.active {
+  color: var(--primary);
+}
+
+.bottom-nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.mobile-drawer.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: #000000 !important;
+  border-right: 1px solid var(--border-subtle);
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.mobile-drawer.active .drawer-pane {
+  transform: translateX(0);
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  background: #000000 !important;
+  padding: 24px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (FULL THIẾT BỊ)
+   ============================================================ */
+
+/* Tablet & Smaller Laptops (<= 1024px) */
+@media (max-width: 1024px) {
+  .col-8, .col-4 { grid-column: span 12; }
+  .col-3 { grid-column: span 6; }
+  .col-6 { grid-column: span 12; }
+  .nav-links { display: none; }
+  .mobile-toggle { display: block !important; }
+}
+
+/* Mobile Devices (<= 768px) */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px 12px 90px; /* Extra bottom padding for bottom nav */
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .col-12, .col-8, .col-6, .col-4, .col-3 {
+    grid-column: span 1;
+  }
+
+  .bottom-nav {
+    display: flex;
+  }
+
+  .visualizer-stage {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 12px;
+  }
+
+  .counter-digits {
+    font-size: 1.7rem;
+  }
+
+  /* Modals become bottom sheets on mobile */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 22px 18px 30px;
+    max-height: 85vh;
+  }
+
+  .btn {
+    min-height: 44px; /* Optimal mobile touch target */
+  }
+
+  .balance-pill-group {
+    padding: 2px 4px;
+  }
+
+  .balance-pill {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Extra Small Phones (<= 480px) */
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-val {
+    font-size: 1.3rem;
+  }
+}
+
+/* ============================================================
+   KHUNG THIẾT BỊ IPHONE 17 PRO MAX (ULTRA TITANIUM EDITION)
+   ============================================================ */
+
+.iphone-mode-active,
+#deviceWrapper {
+  background: #000000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  min-height: 100vh !important;
+  min-height: -webkit-fill-available !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  position: relative !important;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Floating Toolbar for Frame */
+.iphone-toolbar {
+  display: none !important;
+}
+
+.iphone-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fbbf24;
+  letter-spacing: 0.04em;
+}
+
+/* Scale Container */
+.iphone-scale-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  width: 100% !important;
+  max-width: 440px !important;
+  height: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 auto !important;
+  overflow: visible;
+  transform: none !important;
+}
+
+/* Outer Titanium Chassis */
+.iphone-chassis {
+  position: relative;
+  width: 100% !important;
+  max-width: 440px !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  flex-shrink: 0 !important;
+  flex-grow: 1 !important;
+  background: #000000 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* Hardware buttons on sides */
+.iphone-btn-action,
+.iphone-btn-vol-up,
+.iphone-btn-vol-down,
+.iphone-btn-power {
+  display: none !important;
+}
+/* Inner Screen Viewport */
+.iphone-screen {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  background: #000000 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  overflow: visible !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* iOS Dynamic Island */
+.dynamic-island {
+  position: relative;
+  margin: -34px auto 6px;
+  z-index: 1200;
+  width: 120px;
+  height: 30px;
+  background: #000;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dynamic-island:hover {
+  width: 190px;
+}
+
+.island-camera {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0d1a29;
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 0 3px #f59e0b;
+}
+
+.island-sensor {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #050b14;
+}
+
+/* iOS Status Bar */
+.ios-status-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 24px 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #fff;
+  background: #000000 !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  user-select: none;
+}
+
+.status-time {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* iOS Home Indicator Bar */
+.ios-home-indicator {
+  display: block;
+  width: 135px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  margin: 6px auto 2px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   BỐ CỤC DI ĐỘNG BÊN TRONG IPHONE SCREEN (TẤT CẢ MENU Ở ĐÁY)
+   ============================================================ */
+
+/* Top bar: CỐ ĐỊNH HOÀN TOÀN Ở ĐỈNH IPHONE */
+/* Top bar: Ẩn fake status bar (Telegram WebApp đã có status bar riêng) */
+.iphone-mode-active .iphone-top-bar,
+#iphoneTopBar {
+  display: none !important;
+}
+
+/* Bottom bar: CỐ ĐỊNH Ở ĐÁY MÀN HÌNH CHUẨN TELEGRAM MINI APP */
+.iphone-mode-active .iphone-bottom-bar,
+#iphoneBottomBar {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  height: auto !important;
+  min-height: 58px !important;
+  z-index: 1000 !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 4px 8px calc(4px + env(safe-area-inset-bottom, 6px)) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.iphone-mode-active .iphone-bottom-bar .bottom-nav,
+.bottom-nav {
+  display: flex !important;
+  position: static !important;
+  width: 100% !important;
+  background: transparent !important;
+  border-top: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  justify-content: space-around !important;
+}
+
+.iphone-mode-active .iphone-bottom-bar .ios-home-indicator,
+.ios-home-indicator {
+  display: none !important;
+}
+
+/* Scrollable viewport: CUỘN MƯỢT TỰ NHIÊN TOÀN MÀN HÌNH */
+.iphone-mode-active .iphone-content-scroll,
+#iphoneContentScroll {
+  position: static !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+  height: auto !important;
+  width: 100% !important;
+  padding-bottom: 76px !important;
+  box-sizing: border-box !important;
+  background: #000000 !important;
+}
+
+.iphone-screen .nav-links {
+  display: none !important;
+}
+
+.iphone-screen .navbar {
+  position: sticky !important;
+  top: 0;
+  z-index: 1001 !important;
+  padding: 14px 18px !important;
+  background: #000000 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-uid-text {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #ead9cf !important;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-level-badge {
+  background: #dfc5b2 !important;
+  color: #1e1b18 !important;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 3px 14px;
+  border-radius: 9999px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lang-globe-btn {
+  background: transparent !important;
+  border: none !important;
+  padding: 4px !important;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.lang-globe-btn:hover {
+  transform: scale(1.1);
+}
+
+.lang-globe-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: #ead9cf;
+}
+
+.iphone-screen .main-content {
+  padding: 14px 10px 20px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.tab-page {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+.tab-page:not(.active) {
+  display: none !important;
+}
+
+.tab-page.active {
+  display: block !important;
+}
+
+.iphone-screen .tab-page {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+.iphone-screen .glass-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  padding: 18px 14px !important;
+}
+
+.iphone-screen #userPageLoggedIn,
+.iphone-screen #userPageLoggedOut,
+.iphone-screen #userHistorySection {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.iphone-screen #userHistorySection {
+  overflow: hidden !important;
+}
+
+.iphone-screen .table-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.iphone-screen .dashboard-grid {
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+.iphone-screen .col-12, 
+.iphone-screen .col-8, 
+.iphone-screen .col-6, 
+.iphone-screen .col-4, 
+.iphone-screen .col-3 {
+  grid-column: span 1 !important;
+}
+
+.iphone-screen .visualizer-stage {
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 10px;
+}
+
+.iphone-screen .counter-digits {
+  font-size: 1.65rem;
+}
+
+/* Non-iPhone mode styles (Desktop or real mobile) */
+#deviceWrapper:not(.iphone-mode-active) .iphone-scale-container {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  position: static !important;
+}
+
+#deviceWrapper:not(.iphone-mode-active) .iphone-chassis {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: auto !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  position: static !important;
+}
+
+#deviceWrapper:not(.iphone-mode-active) .iphone-btn-action,
+#deviceWrapper:not(.iphone-mode-active) .iphone-btn-vol-up,
+#deviceWrapper:not(.iphone-mode-active) .iphone-btn-vol-down,
+#deviceWrapper:not(.iphone-mode-active) .iphone-btn-power {
+  display: none !important;
+}
+
+#deviceWrapper:not(.iphone-mode-active) .iphone-screen {
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  height: auto !important;
+  position: static !important;
+  display: block !important;
+}
+
+#deviceWrapper:not(.iphone-mode-active) .iphone-top-bar {
+  display: none !important;
+}
+
+#deviceWrapper:not(.iphone-mode-active) .iphone-content-scroll {
+  position: static !important;
+  overflow: visible !important;
+  height: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+}
+
+#deviceWrapper:not(.iphone-mode-active) .iphone-bottom-bar .ios-home-indicator {
+  display: none !important;
+}
+
+@media (min-width: 769px) {
+  #deviceWrapper:not(.iphone-mode-active) .iphone-bottom-bar {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE SCALING FOR IPHONE 17 PRO MAX & MOBILE ADAPTATION
+   ============================================================ */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  /* Khi người dùng muốn xem dạng phẳng Full Width Desktop */
+  #deviceWrapper:not(.iphone-mode-active) {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+  }
+
+  #deviceWrapper:not(.iphone-mode-active) .iphone-chassis {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  #deviceWrapper:not(.iphone-mode-active) .iphone-top-bar {
+    display: none !important;
+  }
+}
+
+/* Tự động co giãn vừa vặn khung iPhone 17 Pro Max trên màn hình hẹp */
+@media (max-width: 480px) {
+  .iphone-mode-active #iphoneScaleContainer {
+    transform: scale(0.82);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 390px) {
+  .iphone-mode-active #iphoneScaleContainer {
+    transform: scale(0.72);
+    transform-origin: top center;
+  }
+}
+
+  /* Nút bấm Bottom Nav */
+  .bottom-nav {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: space-around !important;
+    padding: 6px 2px !important;
+    background: #000000 !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom-nav-btn {
+    font-size: 0.72rem !important;
+    padding: 4px 2px !important;
+    gap: 3px !important;
+  }
+
+  /* Navbar chuẩn theo ảnh: UID: 120850 + Level 10 pill + Quả địa cầu */
+  .navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 14px 18px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    background: #000000 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  }
+
+  .navbar-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+  }
+
+  .nav-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .nav-uid-text {
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: #ead9cf !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  .nav-level-badge {
+    background: #dfc5b2 !important;
+    color: #1e1b18 !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    padding: 3px 14px !important;
+    border-radius: 9999px !important;
+    line-height: 1.35 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .lang-globe-btn {
+    background: transparent !important;
+    border: none !important;
+    padding: 4px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .lang-globe-btn svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: #ead9cf !important;
+  }
+
+  /* Nội dung trang & Thẻ */
+  main, .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 10px 90px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .tab-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .glass-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .ref-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+.ref-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .ref-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================================================
+   ĐỒNG BỘ TOÀN BỘ MÀU CHỮ GIỐNG VÍ TIỀN (#ead9cf & #8e8c94)
+   ========================================================= */
+*, *::before, *::after {
+  --text-main: #ead9cf;
+  --text-muted: #8e8c94;
+  --text-dim: #7c7a82;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+span,
+div,
+label,
+li,
+a,
+th,
+td,
+input,
+select,
+textarea,
+button,
+small,
+strong,
+em,
+b,
+i,
+.nav-item,
+.form-label,
+.spec-name,
+.spec-val,
+.stat-label,
+.empty-text,
+.log-item,
+.modal-title,
+.modal-close,
+.counter-digits,
+.coin-symbol,
+.balance-pill,
+.badge,
+.tab-item,
+.user-uid-display,
+.user-usdt-balance,
+.user-coin-balance,
+[data-i18n] {
+  color: #ead9cf !important;
+}
+
+/* Các nhãn phụ, mô tả phụ, tỷ giá, chú thích có tông màu xám ấm dịu nhẹ */
+.stat-sub,
+.wallet-sub-equiv,
+.text-muted,
+.form-desc,
+.form-hint,
+.note-text {
+  color: #8e8c94 !important;
+}
+
+/* Chữ hiển thị nét, màu trắng ngà ấm sang trọng */
+body {
+  color: #ead9cf !important;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Brand Title & Header chữ #ead9cf sáng rõ */
+.brand-title {
+  color: #ead9cf !important;
+  -webkit-text-fill-color: #ead9cf !important;
+  background: none !important;
+  text-shadow: 0 0 16px rgba(234, 217, 207, 0.35);
+}
+
+.brand-icon {
+  color: #ead9cf !important;
+}
+
+/* Placeholder input màu xám dịu mắt */
+::placeholder {
+  color: #7c7a82 !important;
+}
+input, select, textarea {
+  color: #ead9cf !important;
+}
+
+/* Toàn bộ nút bấm */
+.btn, .btn-primary, .btn-secondary, .btn-success, .btn-gold, .btn-sm {
+  color: #ead9cf !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+}
+
+/* Nút bấm primary tông cam kem ấm giống nút Mua lại */
+.btn-primary {
+  background: #ceb09b !important;
+  color: #18171c !important;
+  text-shadow: none !important;
+}
+
+/* Hiệu ứng phát sáng nhẹ cho số liệu lớn và tiêu đề */
+h1, h2, h3, .counter-digits {
+  text-shadow: 0 0 14px rgba(234, 217, 207, 0.3);
+}
+
+/* =========================================================
+   GIAO DIỆN TRANG USER (VÍ TIỀN) CHUẨN 100% THEO ẢNH MẪU
+   ========================================================= */
+
+/* Navbar hiển thị đồng bộ trên mọi tab */
+body.tab-wallet-active .navbar {
+  display: block !important;
+}
+
+/* Đảm bảo trang Ví & Swap thoáng, không bị che tiêu đề */
+#page-wallet {
+  background: #000000 !important;
+  min-height: 100%;
+}
+
+.iphone-screen #page-wallet {
+  padding-top: 24px !important;
+}
+
+#page-user #userPageLoggedIn {
+  padding-top: 20px !important;
+}
+
+/* Màu chữ chuẩn xác 100% theo ảnh gốc (Off-white / Warm Ivory #ead9cf) */
+#page-user,
+#page-user * {
+  --user-text: #ead9cf;
+}
+
+#page-user .wallet-title,
+#page-user h1 {
+  color: #ead9cf !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+#page-user .wallet-main-balance,
+#page-user .wallet-main-balance span {
+  color: #ead9cf !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  text-shadow: none !important;
+}
+
+#page-user .wallet-main-balance svg {
+  stroke: #ead9cf !important;
+}
+
+#page-user .wallet-sub-equiv,
+#page-user #userPageEquivUsdt {
+  color: #7c7a82 !important;
+  text-shadow: none !important;
+}
+
+#page-user .action-btn-circle {
+  border-color: rgba(234, 217, 207, 0.32) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+#page-user .action-btn-circle svg {
+  stroke: #ead9cf !important;
+}
+
+#page-user .action-btn-circle svg.fill-icon {
+  fill: #ead9cf !important;
+}
+
+#page-user .action-btn-label {
+  color: #ead9cf !important;
+  font-weight: 500 !important;
+  font-size: 0.85rem !important;
+  text-shadow: none !important;
+}
+
+#page-user .badge-new {
+  color: #d3b8a6 !important;
+  border-color: rgba(211, 184, 166, 0.7) !important;
+  background: #000000 !important;
+  text-shadow: none !important;
+}
+
+#page-user .wallet-section-title {
+  color: #ead9cf !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+#page-user .wallet-divider {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+#page-user .asset-name {
+  color: #ead9cf !important;
+  font-weight: 700 !important;
+  font-size: 1.15rem !important;
+  text-shadow: none !important;
+}
+
+#page-user .asset-amount {
+  color: #ead9cf !important;
+  font-weight: 600 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 1.15rem !important;
+  text-shadow: none !important;
+}
+
+#page-user .asset-chevron {
+  stroke: #5b595e !important;
+  color: #5b595e !important;
+}
+
+/* =========================================================
+   NỀN ĐEN SANG TRỌNG (OLED DARK) - CÁC THẺ & NÚT RÕ RÀNG KHÔNG BỊ CHE
+   ========================================================= */
+
+/* Nền đen tuyền cho khung ứng dụng, toàn trang và thanh điều hướng */
+html,
+body,
+.app-container,
+.main-content,
+.tab-page,
+#page-dashboard,
+#page-mining,
+#page-wallet,
+#page-referral,
+#page-user,
+#page-admin,
+.iphone-mode-active,
+.iphone-screen,
+.iphone-content-scroll,
+.navbar,
+.bottom-nav {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+/* Các thẻ (Card) hiển thị dạng khối nổi tương phản cao trên nền đen */
+.glass-card,
+.miner-card,
+.modal-content,
+.table-wrapper,
+#userPageLoggedIn,
+#userPageLoggedOut,
+.buyback-card {
+  background: #0e0d14 !important;
+  background-color: #0e0d14 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Thẻ khai thác realtime giữ viền vàng kim sang trọng */
+#dashMiningCard {
+  background: #0b0a10 !important;
+  background-color: #0b0a10 !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.16) !important;
+}
+
+/* Các ô nhập liệu (Input) nổi bật, dễ nhìn, gõ chữ rõ */
+.form-input,
+.buyback-input-box {
+  background: #15141c !important;
+  background-color: #15141c !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ead9cf !important;
+}
+
+.form-input:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Các khối thống kê con bên trong thẻ */
+.buyback-balance-box,
+.mining-rig-box,
+.stat-box {
+  background: #14131c !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Bảng dữ liệu */
+.custom-table th {
+  background: #121118 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ead9cf !important;
+}
+
+.custom-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Đảm bảo toàn bộ chữ có độ tương phản cao, dễ đọc trên nền đen */
+p, span, label, div {
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================
+   KHỐI ĐÀO COIN CHUẨN ẢNH: EDEN / H + JOIN 100× + ĐẾM NGƯỢC + MINING
+   ========================================================= */
+.mine-panel {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.mine-rate-row {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 62px;
+  margin-bottom: 10px;
+}
+
+.mine-rate {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #6f6b72;
+  letter-spacing: 0.02em;
+  padding-bottom: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.mine-boost {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.mine-boost-x {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: #f4ece6;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1;
+  padding-right: 6px;
+}
+
+.mine-boost-x small {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.mine-join-btn {
+  background: #ead1bf;
+  color: #000000 !important;
+  border: none;
+  border-radius: 9999px;
+  padding: 5px 16px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.mine-join-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(234, 209, 191, 0.35);
+}
+
+.mine-box {
+  position: relative;
+  border: 1px solid rgba(234, 209, 191, 0.55);
+  border-radius: 10px;
+  padding: 26px 16px 46px;
+  margin-bottom: 40px;
+  background: #0d0c12;
+  box-shadow: inset 0 0 18px rgba(234, 209, 191, 0.04);
+}
+
+.mine-info-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #bdb5b0;
+  background: transparent;
+  color: #bdb5b0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mine-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #f4ece6;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.mine-timer-line {
+  flex: 0 1 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 236, 230, 0.8));
+}
+
+.mine-timer-line:last-child {
+  background: linear-gradient(90deg, rgba(244, 236, 230, 0.8), transparent);
+}
+
+.mine-timer-label {
+  margin-top: 10px;
+  color: #f4ece6;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.mine-action-btn {
+  position: absolute;
+  left: 50%;
+  bottom: -32px;
+  transform: translateX(-50%);
+  width: 62%;
+  max-width: 260px;
+  height: 60px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #121118;
+  color: #5f5b63;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: not-allowed;
+  transition: all 0.25s ease;
+}
+
+/* Trạng thái đủ 24h: sẵn sàng Claim để chạy tiếp */
+.mine-action-btn.ready {
+  background: #ead1bf;
+  color: #1e1b18;
+  border-color: transparent;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 22px rgba(234, 209, 191, 0.35);
+  animation: minePulse 1.8s ease-in-out infinite;
+}
+
+.mine-action-btn.idle {
+  color: #ead1bf;
+  border-color: rgba(234, 209, 191, 0.4);
+  cursor: pointer;
+}
+
+@keyframes minePulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(234, 209, 191, 0.25); }
+  50% { box-shadow: 0 0 28px rgba(234, 209, 191, 0.55); }
+}
+
+.mine-footnote {
+  font-size: 0.76rem;
+  color: #6f6b72;
+}
+
+/* =========================================================
+   GIAO DIỆN MUA GÓI ĐÀO (STORE & SVIP MODAL) CHUẨN ẢNH 1 & 2
+   ========================================================= */
+
+.store-stat-card {
+  background: #111218;
+  border-radius: 14px;
+  padding: 14px 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-stat-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(223, 197, 178, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.store-stat-title {
+  font-size: 0.76rem;
+  color: #8a8793;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.store-stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-mono);
+  line-height: 1.25;
+}
+
+.store-tab-btn {
+  background: #14151e;
+  color: #8a8793;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.store-tab-btn.active {
+  background: #111219;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.store-card-container {
+  background: #111219;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0 16px 16px 16px;
+  padding: 22px 18px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.65);
+}
+
+.btn-store-buy {
+  width: 100%;
+  background: #ead1bf;
+  color: #000000 !important;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+  text-align: center;
+}
+
+.btn-store-buy:hover {
+  background: #f1ddce;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(234, 209, 191, 0.35);
+}
+
+.store-action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #161720;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.store-action-btn:hover {
+  background: #20212c;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Modal Mua sắm (Ảnh 2) */
+.svip-modal-box {
+  background: #111219 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95) !important;
+}
+
+.svip-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.svip-modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.svip-modal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.svip-modal-label {
+  font-size: 0.9rem;
+  color: #8a8793;
+}
+
+.svip-modal-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--font-mono);
+}
+
+.svip-qty-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.svip-qty-btn:active {
+  transform: scale(0.9);
+}
+
+.svip-qty-input {
+  width: 54px;
+  height: 34px;
+  background: #fff !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+  font-family: var(--font-mono) !important;
+  text-align: center;
+  border-radius: 6px;
+  border: none !important;
+  font-size: 1rem !important;
+  outline: none;
+}
+
+/* ==========================================================================
+   TELEGRAM MINI APP (TMA) OPTIMIZATIONS
+   ========================================================================== */
+
+
+/* Telegram Share Button */
+.btn-telegram-share {
+  background: linear-gradient(135deg, #2AABEE, #229ED9);
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 12px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(42, 171, 238, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-telegram-share:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   MÀN HÌNH HOÁ ĐƠN / LỊCH SỬ GIAO DỊCH CHUẨN 100% THEO ẢNH
+   ========================================================= */
+
+.invoice-view-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100%;
+  background: #000000 !important;
+  box-sizing: border-box;
+  padding: 10px 4px 30px;
+}
+
+.invoice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 14px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.invoice-back-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #232228;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.invoice-back-btn:hover {
+  background: #2f2e37;
+  transform: translateX(-2px);
+}
+
+.invoice-back-btn:active {
+  transform: scale(0.94);
+}
+
+.invoice-header-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-align: center;
+  flex: 1;
+  letter-spacing: -0.01em;
+}
+
+.invoice-filter-wrapper {
+  position: relative;
+}
+
+.invoice-filter-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.invoice-filter-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.06);
+}
+
+.invoice-filter-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #18171f;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 6px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+  z-index: 1050;
+  min-width: 195px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.invoice-filter-dropdown .filter-opt {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #d1cfd8;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.invoice-filter-dropdown .filter-opt:hover,
+.invoice-filter-dropdown .filter-opt.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.invoice-balance-section {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+
+.invoice-balance-number {
+  font-size: 2.85rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  font-family: var(--font-mono), -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.1;
+}
+
+.invoice-balance-subtitle {
+  font-size: 1.05rem;
+  color: #8e8c94 !important;
+  font-weight: 400;
+}
+
+.invoice-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.09);
+  margin: 22px 0 4px;
+}
+
+.invoice-tx-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.invoice-tx-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 0.15s ease;
+}
+
+.invoice-tx-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.invoice-tx-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.invoice-usdt-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(38, 161, 123, 0.3);
+}
+
+.invoice-tx-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.invoice-tx-name {
+  font-size: 1.04rem;
+  font-weight: 500;
+  color: #ffffff !important;
+  letter-spacing: 0.01em;
+}
+
+.invoice-tx-date {
+  font-size: 0.85rem;
+  color: #71717a !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.invoice-tx-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.invoice-tx-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.01em;
+}
+
+.invoice-tx-unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8e8c94 !important;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.invoice-check-icon {
+  stroke: #ffffff !important;
+  stroke-width: 2.8;
+}
+
+/* Modal history phong cách chuẩn ảnh */
+#historyModal .modal-content.invoice-modal-content {
+  max-width: 520px;
+  width: 95%;
+  background: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
+  padding: 16px 14px 24px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+/* =========================================================
+   TRANG GIỚI THIỆU & BẢNG XẾP HẠNG ĐỘI (CHUẨN ẢNH 1)
+   ========================================================= */
+
+.about-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 6px 4px 30px;
+}
+
+/* 1. Header Bar: Logo EDEN & Quả địa cầu */
+.about-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 6px 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.about-brand-text {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 2. Grid 8 nút tròn (4 cột x 2 hàng) */
+.about-grid-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 8px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.about-action-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.about-circle-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.about-action-col:hover .about-circle-btn {
+  transform: translateY(-2px);
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.about-action-col:active .about-circle-btn {
+  transform: scale(0.92);
+}
+
+.about-circle-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+}
+
+.about-action-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #d1cfd8;
+  margin-top: 8px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* 3. Bảng xếp hạng đội */
+.about-leaderboard-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-lb-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.about-lb-subrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  margin-bottom: 24px;
+}
+
+.about-lb-subtitle {
+  font-size: 0.88rem;
+  color: #8e8c94;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.about-lb-detail-btn {
+  background: #dfc5b2 !important;
+  color: #000000 !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 5px 14px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(223, 197, 178, 0.25);
+}
+
+.about-lb-detail-btn span {
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+.about-lb-detail-btn svg {
+  stroke: #000000 !important;
+}
+
+.about-lb-detail-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* 4. Podium Top 3 */
+.podium-stage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 28px;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+/* Rank 1 Center */
+.podium-item.rank-1 {
+  order: 2;
+  margin-bottom: 12px;
+}
+
+.podium-item.rank-2 {
+  order: 1;
+}
+
+.podium-item.rank-3 {
+  order: 3;
+}
+
+/* Badges: NO.1, NO.2, NO.3 */
+.podium-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 2px 10px;
+  margin-bottom: -10px;
+  z-index: 3;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.podium-badge.badge-gold {
+  background: #ffb800;
+  color: #000000;
+}
+
+.podium-badge.badge-silver {
+  background: #a5b4fc;
+  color: #1e1b4b;
+}
+
+.podium-badge.badge-bronze {
+  background: #fb923c;
+  color: #431407;
+}
+
+/* Aura Spotlight Beam */
+.podium-aura {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 140px;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  filter: blur(18px);
+  opacity: 0.6;
+}
+
+.podium-aura.aura-gold {
+  background: radial-gradient(circle, rgba(255, 184, 0, 0.45) 0%, rgba(255, 184, 0, 0) 70%);
+}
+
+.podium-aura.aura-silver {
+  background: radial-gradient(circle, rgba(165, 180, 252, 0.35) 0%, rgba(165, 180, 252, 0) 70%);
+}
+
+.podium-aura.aura-bronze {
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.35) 0%, rgba(251, 146, 60, 0) 70%);
+}
+
+/* Avatar Container with Laurel Wreath */
+.podium-avatar-wrap {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.podium-item.rank-1 .podium-avatar-wrap {
+  width: 98px;
+  height: 98px;
+}
+
+.podium-avatar-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.podium-item.rank-1 .podium-avatar-circle {
+  width: 82px;
+  height: 82px;
+}
+
+.podium-avatar-circle svg {
+  width: 48px;
+  height: 48px;
+  fill: #1e1e26;
+}
+
+/* Laurel wreath svg around avatar bottom */
+.podium-laurel {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.podium-item.rank-1 .podium-laurel {
+  width: 104px;
+  bottom: -8px;
+}
+
+.podium-username {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 10px 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95px;
+}
+
+.podium-team-count {
+  font-size: 0.82rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* 5. Danh sách thứ hạng bên dưới (Ranked List) */
+.about-rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.about-rank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #111219;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  transition: background 0.15s ease;
+}
+
+.about-rank-row:hover {
+  background: #181924;
+}
+
+.about-rank-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-rank-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.about-rank-num.num-gold {
+  background: #f59e0b;
+  color: #000000;
+}
+
+.about-rank-num.num-silver {
+  background: #818cf8;
+  color: #ffffff;
+}
+
+.about-rank-num.num-bronze {
+  background: #fb923c;
+  color: #ffffff;
+}
+
+.about-rank-num.num-default {
+  background: #23222a;
+  color: #8e8c94;
+}
+
+.about-rank-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.about-rank-avatar svg {
+  width: 26px;
+  height: 26px;
+  fill: #1e1e26;
+}
+
+.about-rank-user {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.about-rank-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+}
+
+.about-rank-team-tag {
+  font-size: 0.8rem;
+  color: #8e8c94;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.about-rank-count {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+/* =========================================================
+   MÀN HÌNH SWAP EDEN ❯ USDT (CHUẨN ẢNH 2)
+   ========================================================= */
+
+.supper-swap-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 8px 4px 30px;
+}
+
+.supper-swap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 4px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.supper-swap-back-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #232228;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.supper-swap-back-btn:hover {
+  background: #2f2e37;
+  transform: translateX(-2px);
+}
+
+.supper-swap-header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  flex: 1;
+  letter-spacing: 0.02em;
+}
+
+.supper-swap-arrow-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.supper-swap-arrow-icon svg {
+  width: 13px;
+  height: 13px;
+  stroke: #ffffff;
+  margin-left: 1px;
+}
+
+.supper-swap-card {
+  background: #171821;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px 18px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.supper-swap-row-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.supper-swap-avail-bal {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+.supper-swap-cur-name {
+  font-size: 1.28rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.supper-swap-row-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.supper-swap-label {
+  font-size: 0.95rem;
+  color: #8e8c94;
+  font-weight: 500;
+}
+
+.supper-swap-rate {
+  font-size: 0.88rem;
+  color: #8e8c94;
+}
+
+.supper-swap-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.supper-swap-input {
+  flex: 1;
+  background: #252733;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 13px 14px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  outline: none;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.supper-swap-input:focus {
+  border-color: #dfc5b2;
+}
+
+.supper-all-btn {
+  background: #dfc5b2 !important;
+  color: #1e1b18 !important;
+  font-weight: 800;
+  font-size: 0.96rem;
+  border: none;
+  border-radius: 10px;
+  padding: 0 22px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  letter-spacing: 0.03em;
+}
+
+.supper-all-btn:hover {
+  opacity: 0.92;
+}
+
+.supper-all-btn:active {
+  transform: scale(0.95);
+}
+
+/* Circular Divider Button */
+.supper-swap-center-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #252733;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -10px auto;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.supper-swap-center-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+}
+
+/* Receive Row */
+.supper-swap-receive-val {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Confirm Action Button in #dfc5b2 */
+.supper-confirm-swap-btn {
+  width: 100%;
+  height: 52px;
+  background: #dfc5b2 !important;
+  color: #1e1b18 !important;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 18px rgba(223, 197, 178, 0.25);
+  text-transform: lowercase;
+}
+
+.supper-confirm-swap-btn:hover {
+  opacity: 0.94;
+  transform: translateY(-1px);
+}
+
+.supper-confirm-swap-btn:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   WALLET ADD & SELECT NETWORK STYLING (ẢNH 1 & ẢNH 2)
+   ========================================================= */
+.network-select-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.network-select-item:active {
+  transform: scale(0.98);
+}
+
+#walletCaptchaBadge:hover {
+  filter: brightness(1.05);
+}
+
+#walletCaptchaBadge:active {
+  transform: scale(0.96);
+}
+
+
+
+
