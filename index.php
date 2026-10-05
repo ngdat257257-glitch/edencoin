@@ -381,8 +381,8 @@ $settings = getSettings($pdo);
           </div>
         </div>
 
-        <!-- Bốn Nút Tròn Thao Tác: Hóa đơn, tạm thay đổi, Mua lại, lời hứa -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; text-align: center;">
+        <!-- Ba Nút Tròn Thao Tác: Hóa đơn, Mua lại, lời hứa -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; text-align: center;">
           
           <!-- Nút 1: Hóa đơn -->
           <div onclick="openInvoiceView(event)" style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
@@ -395,17 +395,6 @@ $settings = getSettings($pdo);
               </svg>
             </div>
             <span class="action-btn-label" style="font-size: 0.85rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px;">Hóa đơn</span>
-          </div>
-
-          <!-- Nút 2: tạm thay đổi (Mở khu vực Hoán đổi & Nạp) -->
-          <div onclick="toggleWalletSwapPanel('swap')" style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
-            <div class="action-btn-circle" style="width: 58px; height: 58px; border-radius: 50%; border: 1.5px solid rgba(234, 217, 207, 0.32); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.2s;">
-              <span class="badge-new" style="position: absolute; top: -6px; right: -4px; border: 1px solid rgba(211, 184, 166, 0.7); background: #000; color: #d3b8a6 !important; border-radius: 10px; font-size: 0.62rem; font-weight: 700; padding: 1px 6px; line-height: 1.2;">new</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#ead9cf" stroke="#ead9cf" stroke-width="1">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-            </div>
-            <span class="action-btn-label" style="font-size: 0.82rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px; line-height: 1.25; text-align: center;">tạm thay<br>đổi</span>
           </div>
 
           <!-- Nút 3: Mua lại (Mở màn hình Mua lại chuẩn ảnh) -->
@@ -447,7 +436,7 @@ $settings = getSettings($pdo);
         <div style="display: flex; flex-direction: column;">
           
           <!-- Hàng 1: SUPPER -->
-          <div onclick="toggleWalletSwapPanel('swap')" style="display: flex; align-items: center; justify-content: space-between; padding: 18px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px 4px; border-bottom: 1px solid rgba(255,255,255,0.05);">
             <div style="display: flex; align-items: center; gap: 10px;">
               <span style="font-size: 1.2rem;">🤖</span>
               <span class="asset-name coin-symbol" style="font-size: 1.15rem; font-weight: 700; color: #ead9cf !important; letter-spacing: 0.02em;">SUPPER</span>
@@ -472,115 +461,6 @@ $settings = getSettings($pdo);
                 <polyline points="9 18 15 12 9 6"/>
               </svg>
             </div>
-          </div>
-
-        </div>
-
-        <!-- Khối Mở Rộng: Hoán Đổi & Nạp USDT (Khi người dùng bấm tạm thay đổi hoặc hàng tài sản) -->
-        <div id="walletExtraPanel" style="display: none; margin-top: 24px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.12);">
-          <!-- Nút điều hướng các chức năng nạp/đổi -->
-          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-            <button id="walletNavBtn-swap" type="button" class="btn btn-primary btn-sm wallet-nav-btn active" onclick="switchWalletTab('swap')" style="flex: 1;">
-              🔄 Hoán Đổi SUPPER
-            </button>
-            <button id="walletNavBtn-deposit" type="button" class="btn btn-secondary btn-sm wallet-nav-btn" onclick="switchWalletTab('deposit')" style="flex: 1;">
-              📥 Nạp USDT
-            </button>
-            <button id="walletNavBtn-withdraw" type="button" class="btn btn-secondary btn-sm wallet-nav-btn" onclick="switchWalletTab('withdraw')" style="flex: 1;">
-              📤 Rút USDT
-            </button>
-          </div>
-
-          <!-- TAB: HOÁN ĐỔI SWAP -->
-          <div id="walletTab-swap" class="wallet-subtab glass-card" style="padding: 18px 16px; border-radius: 16px;">
-            <h3 data-i18n="wallet_swap_title" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; color: #ead9cf;">Hoán Đổi Coin Sang USDT</h3>
-            <p data-i18n="wallet_swap_desc" style="color: #8e8c94; font-size: 0.84rem; margin-bottom: 16px;">Quy đổi ngay lập tức sản lượng SUPPER thành USDT để rút về hoặc mua thêm máy.</p>
-
-            <form id="swapForm">
-              <div class="form-group">
-                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px;">
-                  <label class="form-label" data-i18n="wallet_swap_amt_label">Số lượng Coin muốn đổi</label>
-                  <span><span data-i18n="wallet_swap_avail">Khả dụng:</span> <strong style="color: #fbbf24;" class="user-coin-balance">0.00</strong></span>
-                </div>
-                <input type="number" step="any" id="swapCoinAmount" class="form-input" value="20" oninput="updateSwapPreview()" required style="background: #000;">
-                <div style="display: flex; gap: 6px; margin-top: 6px;">
-                  <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; padding: 4px;" onclick="setSwapPercent(0.25)">25%</button>
-                  <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; padding: 4px;" onclick="setSwapPercent(0.5)">50%</button>
-                  <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; padding: 4px;" onclick="setSwapPercent(0.75)">75%</button>
-                  <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; padding: 4px;" onclick="setSwapPercent(1.0)">100% (MAX)</button>
-                </div>
-              </div>
-
-              <div style="background: #000; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px dashed rgba(255,255,255,0.12); margin: 14px 0;">
-                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px;">
-                  <span style="color: #8e8c94;" data-i18n="wallet_swap_rate_label">Tỷ giá quy đổi:</span>
-                  <span id="walletSwapRate" style="font-family: var(--font-mono); color: #ead9cf;">1 SUPPER = $0.001 USDT</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="color: #8e8c94;" data-i18n="wallet_swap_receive_label">Bạn nhận được:</span>
-                  <strong style="color: #fbbf24; font-size: 1.3rem; font-family: var(--font-mono);" id="swapUsdtPreview">+0.00 USDT</strong>
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="width: 100%; height: 44px; font-weight: 700;" data-i18n="wallet_swap_btn">Đổi Ngay Sang USDT</button>
-            </form>
-          </div>
-
-          <!-- TAB: NẠP USDT -->
-          <div id="walletTab-deposit" class="wallet-subtab glass-card" style="display: none; padding: 18px 16px; border-radius: 16px;">
-            <h3 data-i18n="wallet_dep_title" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; color: #ead9cf;">Nạp USDT Vào Hệ Thống</h3>
-            <p data-i18n="wallet_dep_desc" style="color: #8e8c94; font-size: 0.84rem; margin-bottom: 16px;">Chuyển USDT đến địa chỉ ví dưới đây, sau đó gửi số tiền và mã TxHash để hệ thống tự động cộng tiền ngay lập tức.</p>
-
-            <div style="background: #000; padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center; margin-bottom: 14px;">
-              <div style="display: inline-block; padding: 10px; background: #fff; border-radius: 10px; margin-bottom: 10px;">
-                <svg width="100" height="100" viewBox="0 0 24 24" fill="#000">
-                  <path d="M2 2h8v8H2zM4 4v4h4V4zm10-2h8v8h-8zM16 4v4h4V4zM2 14h8v8H2zm2 2v4h4v-4zm10 0h3v3h-3zm5 0h3v3h-3zm-5 5h3v3h-3zm5 0h3v3h-3zM10 4h4v2h-4zm0 6h4v2h-4zm6 0h4v2h-4z"/>
-                </svg>
-              </div>
-              <div style="font-size: 0.8rem; color: #8e8c94; margin-bottom: 6px;">
-                <span data-i18n="wallet_dep_network_label">Mạng lưới:</span> <strong style="color: #fbbf24;" id="walletDepositNetwork">USDT (TRC20)</strong>
-              </div>
-              <div style="background: #000; border: 1px solid rgba(255,255,255,0.12); padding: 8px 10px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.82rem; word-break: break-all; color: #ead9cf;">
-                <span id="walletDepositAddress"><?= htmlspecialchars($settings['usdt_deposit_address']) ?></span>
-              </div>
-              <button class="btn btn-secondary btn-sm" style="margin-top: 10px; width: 100%;" onclick="copyDepositAddress()" data-i18n="wallet_dep_copy_btn">Sao Chép Địa Chỉ Ví</button>
-            </div>
-
-            <!-- Deposit Form -->
-            <form id="depositForm">
-              <div class="form-group" style="margin-bottom: 12px;">
-                <label class="form-label" style="font-size: 0.82rem;"><span data-i18n="wallet_dep_amt_label">Số lượng USDT muốn nạp</span> (<span data-i18n="wallet_dep_min_label">Tối thiểu:</span> <span id="walletMinDeposit">$10 USDT</span>)</label>
-                <input type="number" step="any" min="10" id="depAmount" class="form-input" value="50" required style="background: #000;">
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <label class="form-label" data-i18n="wallet_dep_tx_label" style="font-size: 0.82rem;">Mã băm giao dịch (TxHash / Transaction ID)</label>
-                <input type="text" id="depTxHash" class="form-input" data-i18n-placeholder="wallet_dep_tx_placeholder" placeholder="Dán mã giao dịch hoặc để trống để tạo tự động" style="background: #000;">
-              </div>
-              <button type="submit" class="btn btn-primary" style="width: 100%; height: 44px; font-weight: 700;" data-i18n="wallet_dep_btn">Xác Nhận Đã Chuyển Tiền</button>
-            </form>
-          </div>
-
-          <!-- TAB: RÚT USDT -->
-          <div id="walletTab-withdraw" class="wallet-subtab glass-card" style="display: none; padding: 18px 16px; border-radius: 16px;">
-            <h3 data-i18n="wallet_wd_title" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; color: #ead9cf;">Rút USDT Về Ví Cá Nhân</h3>
-            <p style="color: #8e8c94; font-size: 0.84rem; margin-bottom: 14px;"><span data-i18n="wallet_wd_desc">Lệnh rút sẽ được gửi đến hàng đợi xét duyệt. Phí rút cố định</span> <span id="walletWithdrawFee">2.5%</span>.</p>
-
-            <form id="withdrawForm">
-              <div class="form-group" style="margin-bottom: 12px;">
-                <label class="form-label" data-i18n="wallet_wd_addr_label" style="font-size: 0.82rem;">Địa chỉ ví USDT nhận tiền (TRC20)</label>
-                <input type="text" id="wdAddress" class="form-input" placeholder="Nhập địa chỉ ví USDT..." required style="background: #000;">
-              </div>
-
-              <div class="form-group" style="margin-bottom: 14px;">
-                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px;">
-                  <label class="form-label"><span data-i18n="wallet_wd_amt_label">Số lượng rút</span> (<span data-i18n="wallet_dep_min_label">Tối thiểu:</span> <span id="walletMinWithdraw">$15 USDT</span>)</label>
-                  <span>Khả dụng: <strong style="color: #fbbf24;" class="user-usdt-balance">0.00</strong> USDT</span>
-                </div>
-                <input type="number" step="any" id="wdAmount" class="form-input" value="20" min="15" required style="background: #000;">
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="width: 100%; height: 44px; font-weight: 700;" data-i18n="wallet_wd_btn">Xác Nhận Yêu Cầu Rút USDT</button>
-            </form>
           </div>
 
         </div>
