@@ -407,15 +407,18 @@ $settings = getSettings($pdo);
             <span class="action-btn-label" style="font-size: 0.85rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px;">Hóa đơn</span>
           </div>
 
-          <!-- Nút 2: tạm thay đổi (Nạp USDT) -->
-          <div onclick="openDepositModal()" style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+          <!-- Nút 2: tạm thay đổi (Đồng bộ chuẩn 100% với nút Mua lại) -->
+          <div onclick="openDepositView()" style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
             <div class="action-btn-circle" style="width: 58px; height: 58px; border-radius: 50%; border: 1.5px solid rgba(234, 217, 207, 0.32); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.2s;">
               <span class="badge-new" style="position: absolute; top: -6px; right: -4px; border: 1px solid rgba(211, 184, 166, 0.7); background: #000; color: #d3b8a6 !important; border-radius: 10px; font-size: 0.62rem; font-weight: 700; padding: 1px 6px; line-height: 1.2;">new</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#ead9cf" stroke="#ead9cf" stroke-width="1">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ead9cf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"/>
+                <line x1="2" y1="10" x2="22" y2="10"/>
+                <circle cx="7" cy="15" r="1.5" fill="#ead9cf"/>
+                <path d="M14 15h4"/>
               </svg>
             </div>
-            <span class="action-btn-label" style="font-size: 0.82rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px; line-height: 1.25; text-align: center;">tạm thay<br>đổi</span>
+            <span class="action-btn-label" style="font-size: 0.85rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px; line-height: 1.2; text-align: center;">tạm thay<br>đổi</span>
           </div>
 
           <!-- Nút 3: Mua lại (Mở màn hình Mua lại chuẩn ảnh) -->
@@ -578,6 +581,89 @@ $settings = getSettings($pdo);
           </button>
         </div> <!-- /buyback card -->
       </div> <!-- /userBuybackView -->
+
+      <!-- 2.5 MÀN HÌNH TẠM THAY ĐỔI (ĐỒNG BỘ 100% VỚI MÀN HÌNH MUA LẠI) -->
+      <div id="userDepositView" style="display: none; flex-direction: column; width: 100%;">
+        
+        <!-- Thanh điều hướng trên cùng: Nút quay lại & Tiêu đề "tạm thay đổi" -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+          <button type="button" onclick="closeDepositView()" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ead9cf" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"/>
+              <polyline points="12 19 5 12 12 5"/>
+            </svg>
+          </button>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #ead9cf !important; margin: 0; text-align: center; flex: 1;">
+            tạm thay đổi
+          </h2>
+          <div style="width: 44px;"></div>
+        </div>
+
+        <!-- Khung thẻ chính bo góc viền cam/hồng phấn nhẹ đồng bộ chuẩn ảnh Mua lại -->
+        <div style="background: #000; border: 1.5px solid rgba(255, 200, 180, 0.22); border-radius: 18px; padding: 20px 16px; box-sizing: border-box;">
+          
+          <!-- Đầu thẻ: Nút Lịch sử giao dịch -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.95rem; font-weight: 700; color: #ead9cf !important;">Tài Sản USDT</span>
+            </div>
+            <button type="button" onclick="openInvoiceView(event)" style="border: 1px solid rgba(255,255,255,0.25); background: transparent; border-radius: 20px; padding: 4px 14px; font-size: 0.8rem; font-weight: 500; color: #ead9cf !important; cursor: pointer; transition: all 0.2s;">
+              Lịch sử giao dịch
+            </button>
+          </div>
+
+          <!-- Khối Sự cân bằng (Số dư USDT hiện tại) -->
+          <div style="background: #000; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 0.84rem; color: #9c9aa2 !important; margin-bottom: 4px;">Sự cân bằng</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #ead9cf !important; font-family: var(--font-mono); display: flex; align-items: baseline; gap: 8px;">
+                <span class="user-usdt-balance" id="depositViewBalanceDisplay">22539.62</span>
+                <span style="font-size: 1.0rem; font-weight: 700; color: #ead9cf !important;">USDT</span>
+              </div>
+            </div>
+            <span style="background: rgba(223, 197, 178, 0.15); color: #dfc5b2; border: 1px solid rgba(223, 197, 178, 0.3); font-weight: 700; font-size: 0.75rem; padding: 6px 12px; border-radius: 10px;">
+              BEP20
+            </span>
+          </div>
+
+          <!-- Ô 1: Địa chỉ ví nạp -->
+          <div style="border: 1px solid rgba(255,255,255,0.16); border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; background: #000;">
+            <div style="font-size: 0.8rem; color: #7c7a82 !important; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+              <span>Địa chỉ ví nạp USDT chính thức:</span>
+              <button type="button" onclick="navigator.clipboard.writeText('0xcb3Fc21Af451e1D51Cd58078F025Dad92595f5BA'); showToast('Đã sao chép địa chỉ ví!', 'success');" style="background: transparent; border: none; font-size: 0.75rem; color: #dfc5b2; font-weight: 700; cursor: pointer;">Copy</button>
+            </div>
+            <input type="text" id="depositViewAddrInput" readonly value="0xcb3Fc21Af451e1D51Cd58078F025Dad92595f5BA" style="background: transparent; border: none; outline: none; width: 100%; color: #38bdf8 !important; font-family: var(--font-mono); font-size: 0.84rem; word-break: break-all; padding: 0;">
+          </div>
+
+          <!-- Ô 2: Chọn nhanh & Nhập số lượng USDT nạp -->
+          <div style="border: 1px solid rgba(255,255,255,0.16); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; background: #000;">
+            <div style="display: flex; gap: 6px; margin-bottom: 10px;">
+              <button type="button" onclick="setDepositViewAmount(10)" style="flex: 1; padding: 6px 0; font-size: 0.8rem; font-weight: 600; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ead9cf; cursor: pointer;">10</button>
+              <button type="button" onclick="setDepositViewAmount(30)" style="flex: 1; padding: 6px 0; font-size: 0.8rem; font-weight: 600; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ead9cf; cursor: pointer;">30</button>
+              <button type="button" onclick="setDepositViewAmount(50)" style="flex: 1; padding: 6px 0; font-size: 0.8rem; font-weight: 600; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ead9cf; cursor: pointer;">50</button>
+              <button type="button" onclick="setDepositViewAmount(100)" style="flex: 1; padding: 6px 0; font-size: 0.8rem; font-weight: 600; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ead9cf; cursor: pointer;">100</button>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <input type="number" id="depositViewAmountInput" step="any" placeholder="Số tiền nạp USDT" value="50" style="background: transparent; border: none; outline: none; flex: 1; color: #ead9cf !important; font-size: 1.1rem; font-weight: 700; padding: 0;">
+              <span style="font-weight: 700; color: #ead9cf !important; font-size: 0.92rem; margin-left: 8px;">USDT</span>
+            </div>
+          </div>
+
+          <!-- Ô 3: Mã TxHash nếu có -->
+          <div style="border: 1px solid rgba(255,255,255,0.16); border-radius: 10px; padding: 12px 14px; margin-bottom: 22px; background: #000;">
+            <input type="text" id="depositViewTxHashInput" placeholder="Mã giao dịch TxHash (Tùy chọn)" style="background: transparent; border: none; outline: none; width: 100%; color: #ead9cf !important; font-size: 0.88rem; padding: 0;">
+          </div>
+
+          <!-- Nút gửi Nạp tiền màu cam kem ấm đồng bộ chuẩn nút Mua lại -->
+          <button type="button" id="btnSubmitDepositView" onclick="submitDepositFromView()" style="width: 100%; height: 50px; background: #ceb09b !important; color: #18171c !important; border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; text-shadow: none !important;">
+            tạm thay đổi
+          </button>
+
+          <div style="margin-top: 14px; text-align: center; font-size: 0.78rem; color: #10b981; line-height: 1.4;">
+            ⚡ Hệ thống tự động duyệt và cộng ngay số dư USDT vào tài khoản của bạn!
+          </div>
+        </div> <!-- /deposit card -->
+      </div> <!-- /userDepositView -->
 
       <!-- 3. MÀN HÌNH HOÁ ĐƠN / LỊCH SỬ GIAO DỊCH (CHUẨN 100% THEO ẢNH NGƯỜI DÙNG CUNG CẤP) -->
       <div id="userInvoiceView" class="invoice-view-container" style="display: none;">

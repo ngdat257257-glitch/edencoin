@@ -217,7 +217,6 @@ function openBuybackView() {
 }
 window.openBuybackView = openBuybackView;
 
-function closeBuybackView() {
   const mainView = document.getElementById('userWalletMainView');
   const buybackView = document.getElementById('userBuybackView');
   if (mainView && buybackView) {
@@ -226,6 +225,82 @@ function closeBuybackView() {
   }
 }
 window.closeBuybackView = closeBuybackView;
+
+function openDepositView() {
+  const mainView = document.getElementById('userWalletMainView');
+  const depositView = document.getElementById('userDepositView');
+  const buybackView = document.getElementById('userBuybackView');
+  const invoiceView = document.getElementById('userInvoiceView');
+
+  if (buybackView) buybackView.style.display = 'none';
+  if (invoiceView) invoiceView.style.display = 'none';
+
+  if (mainView && depositView) {
+    mainView.style.display = 'none';
+    depositView.style.display = 'flex';
+  }
+  const balDisplay = document.getElementById('depositViewBalanceDisplay');
+  if (balDisplay && State.user) {
+    balDisplay.innerText = Number(State.user.usdt_balance || 0).toFixed(2);
+  }
+}
+window.openDepositView = openDepositView;
+
+function closeDepositView() {
+  const mainView = document.getElementById('userWalletMainView');
+  const depositView = document.getElementById('userDepositView');
+  if (mainView && depositView) {
+    depositView.style.display = 'none';
+    mainView.style.display = 'flex';
+  }
+}
+window.closeDepositView = closeDepositView;
+
+function setDepositViewAmount(val) {
+  const input = document.getElementById('depositViewAmountInput');
+  if (input) input.value = val;
+}
+window.setDepositViewAmount = setDepositViewAmount;
+
+async function submitDepositFromView() {
+  if (!State.user) {
+    showToast('Vui lòng đăng nhập trước khi nạp USDT!', 'warning');
+    switchTab('user');
+    return;
+  }
+
+  const amtInput = document.getElementById('depositViewAmountInput');
+  const txInput = document.getElementById('depositViewTxHashInput');
+  const amount = parseFloat(amtInput ? amtInput.value : 0);
+  const txHash = txInput ? txInput.value.trim() : '';
+
+  if (isNaN(amount) || amount <= 0) {
+    showToast('Vui lòng nhập số tiền nạp hợp lệ (> 0 USDT)', 'warning');
+    return;
+  }
+
+  const btn = document.getElementById('btnSubmitDepositView');
+  if (btn) btn.disabled = true;
+
+  try {
+    const res = await apiCall('api/wallet.php?action=deposit', 'POST', {
+      amount: amount,
+      currency: 'USDT',
+      network: 'BEP20',
+      tx_hash: txHash
+    });
+
+    showToast(res.message || `Đã nạp thành công +${amount} USDT vào tài khoản!`, 'success');
+    closeDepositView();
+    await checkSession();
+    await loadDashboard();
+  } catch (err) {
+    showToast(err.message || 'Lỗi xử lý nạp tiền', 'error');
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+window.submitDepositFromView = submitDepositFromView;
 
 function toggleWalletSwapPanel(subtab = 'swap') {
   const panel = document.getElementById('walletExtraPanel');
@@ -401,9 +476,21 @@ async function initTelegramWebApp() {
           return;
         }
 
-        const buybackView = document.getElementById('userWalletBuybackView');
+        const depositView = document.getElementById('userDepositView');
+        if (depositView && depositView.style.display !== 'none') {
+          if (typeof closeDepositView === 'function') closeDepositView();
+          return;
+        }
+
+        const buybackView = document.getElementById('userBuybackView');
         if (buybackView && buybackView.style.display !== 'none') {
           if (typeof closeBuybackView === 'function') closeBuybackView();
+          return;
+        }
+
+        const invoiceView = document.getElementById('userInvoiceView');
+        if (invoiceView && invoiceView.style.display !== 'none') {
+          if (typeof closeInvoiceView === 'function') closeInvoiceView();
           return;
         }
 
