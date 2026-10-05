@@ -200,22 +200,8 @@ $settings = getSettings($pdo);
         </div>
     </section>
 
-    <!-- ==================== TAB 2: STORE (MÁY ĐÀO - GIAO DIỆN CHUẨN 100% THEO ẢNH) ==================== -->
-    <section id="page-store" class="tab-page" style="display: none; width: 100%; max-width: 520px; margin: 0 auto; padding: 0 10px 30px; box-sizing: border-box; overflow-x: hidden;">
-      
-      <!-- Top Brand Header: Logo SUPPER chuẩn theo ảnh 1 -->
-      <div class="store-top-header" style="display: flex; align-items: center; justify-content: flex-start; padding: 10px 2px 18px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <!-- Logo tròn E của SUPPER AI -->
-          <svg width="30" height="30" viewBox="0 0 36 36" fill="none" style="flex-shrink: 0;">
-            <circle cx="18" cy="18" r="16.5" stroke="#ead9cf" stroke-width="2"/>
-            <path d="M24 12.5C22.8 11.5 21 11 19 11C14.8 11 11.5 14.1 11.5 18C11.5 21.9 14.8 25 19 25C21 25 22.8 24.5 24 23.5" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-            <line x1="9.5" y1="16" x2="21" y2="16" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-            <line x1="9.5" y1="20" x2="21" y2="20" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-          </svg>
-          <span style="font-size: 1.25rem; font-weight: 800; color: #ead9cf; letter-spacing: 0.03em;">SUPPER</span>
-        </div>
-      </div>
+    <!-- ==================== TAB 2: STORE (MÁY ĐÀO) ==================== -->
+    <section id="page-store" class="tab-page" style="display: none; width: 100%; max-width: 520px; margin: 0 auto; padding: 10px 10px 30px; box-sizing: border-box; overflow-x: hidden;">
 
       <!-- User Profile Banner (chuẩn ảnh 1) -->
       <div class="store-user-banner" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
@@ -383,16 +369,9 @@ $settings = getSettings($pdo);
           Ví tiền
         </h1>
 
-        <!-- Khối Số Dư Lớn: (E) 1555.582095 SUPPER -->
+        <!-- Khối Số Dư Lớn: 1555.582095 SUPPER -->
         <div style="text-align: center; margin-bottom: 32px;">
           <div class="wallet-main-balance" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.85rem; font-weight: 700; color: #ead9cf !important; letter-spacing: -0.01em;">
-            <!-- Biểu tượng đồng tiền tròn chữ E (Euro/SUPPER AI symbol) -->
-            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" style="flex-shrink: 0;">
-              <circle cx="18" cy="18" r="16.5" stroke="#ead9cf" stroke-width="2"/>
-              <path d="M24 12.5C22.8 11.5 21 11 19 11C14.8 11 11.5 14.1 11.5 18C11.5 21.9 14.8 25 19 25C21 25 22.8 24.5 24 23.5" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-              <line x1="9.5" y1="16" x2="21" y2="16" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-              <line x1="9.5" y1="20" x2="21" y2="20" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-            </svg>
             <span class="user-coin-balance" style="font-weight: 700; color: #ead9cf !important;">1555.582095</span>
             <span class="coin-symbol" style="font-weight: 700; color: #ead9cf !important;">SUPPER</span>
           </div>
@@ -469,13 +448,8 @@ $settings = getSettings($pdo);
           
           <!-- Hàng 1: SUPPER -->
           <div onclick="toggleWalletSwapPanel('swap')" style="display: flex; align-items: center; justify-content: space-between; padding: 18px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;">
-            <div style="display: flex; align-items: center; gap: 14px;">
-              <svg width="34" height="34" viewBox="0 0 36 36" fill="none" style="flex-shrink: 0;">
-                <circle cx="18" cy="18" r="16.5" stroke="#ead9cf" stroke-width="2"/>
-                <path d="M24 12.5C22.8 11.5 21 11 19 11C14.8 11 11.5 14.1 11.5 18C11.5 21.9 14.8 25 19 25C21 25 22.8 24.5 24 23.5" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="9.5" y1="16" x2="21" y2="16" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="9.5" y1="20" x2="21" y2="20" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-              </svg>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.2rem;">🤖</span>
               <span class="asset-name coin-symbol" style="font-size: 1.15rem; font-weight: 700; color: #ead9cf !important; letter-spacing: 0.02em;">SUPPER</span>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
@@ -633,16 +607,10 @@ $settings = getSettings($pdo);
         <!-- Khung thẻ chính bo góc viền cam/hồng phấn nhẹ -->
         <div style="background: #000; border: 1.5px solid rgba(255, 200, 180, 0.22); border-radius: 18px; padding: 20px 16px; box-sizing: border-box;">
           
-          <!-- Đầu thẻ: Logo SUPPER & Nút Lịch sử giao dịch -->
+          <!-- Đầu thẻ: Nút Lịch sử giao dịch -->
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <svg width="26" height="26" viewBox="0 0 36 36" fill="none" style="flex-shrink: 0;">
-                <circle cx="18" cy="18" r="16.5" stroke="#ead9cf" stroke-width="2"/>
-                <path d="M24 12.5C22.8 11.5 21 11 19 11C14.8 11 11.5 14.1 11.5 18C11.5 21.9 14.8 25 19 25C21 25 22.8 24.5 24 23.5" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="9.5" y1="16" x2="21" y2="16" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="9.5" y1="20" x2="21" y2="20" stroke="#ead9cf" stroke-width="2.2" stroke-linecap="round"/>
-              </svg>
-              <span style="font-size: 1.05rem; font-weight: 800; color: #ead9cf !important;" class="coin-symbol">SUPPER</span>
+              <span style="font-size: 0.95rem; font-weight: 700; color: #ead9cf !important;">Tài Sản SUPPER</span>
             </div>
             <button type="button" onclick="openInvoiceView(event)" style="border: 1px solid rgba(255,255,255,0.25); background: transparent; border-radius: 20px; padding: 4px 14px; font-size: 0.8rem; font-weight: 500; color: #ead9cf !important; cursor: pointer; transition: all 0.2s;">
               Lịch sử giao dịch
@@ -757,20 +725,8 @@ $settings = getSettings($pdo);
 
     <!-- ==================== TAB 4: ABOUT & REFERRAL (GIỚI THIỆU & HOA HỒNG TUYẾN TRÊN) ==================== -->
         <section id="page-about" class="tab-page" style="display: none; width: 100%; max-width: 520px; margin: 0 auto; padding-bottom: 30px; box-sizing: border-box; overflow-x: hidden;">
-      <!-- 1. MÀN HÌNH CHÍNH TRANG GIỚI THIỆU (CHUẨN ẢNH 1) -->
+      <!-- 1. MÀN HÌNH CHÍNH TRANG GIỚI THIỆU -->
       <div id="aboutMainView" class="about-page-container">
-        <!-- Top Bar: Logo SUPPER -->
-        <div class="about-top-bar">
-          <div class="about-brand-wrap">
-            <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-              <circle cx="18" cy="18" r="16.5" stroke="#ffffff" stroke-width="2"/>
-              <path d="M24 12.5C22.8 11.5 21 11 19 11C14.8 11 11.5 14.1 11.5 18C11.5 21.9 14.8 25 19 25C21 25 22.8 24.5 24 23.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-              <line x1="9.5" y1="16" x2="21" y2="16" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-              <line x1="9.5" y1="20" x2="21" y2="20" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-            </svg>
-            <span class="about-brand-text">SUPPER</span>
-          </div>
-        </div>
 
         <!-- Grid 8 Nút Tròn (4 cột x 2 hàng chuẩn ảnh 1) -->
         <div class="about-grid-actions">
