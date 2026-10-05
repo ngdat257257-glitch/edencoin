@@ -833,7 +833,7 @@ $settings = getSettings($pdo);
           </div>
 
           <!-- Nút 6: SUPPER&USDT (MỞ ẢNH 2 CHUẨN 100%) -->
-          <div class="about-action-col" onclick="openSUPPER AIUsdtSwapView()">
+          <div class="about-action-col" onclick="openSupperUsdtSwapView()">
             <div class="about-circle-btn" style="border-color: #dfc5b2;">
               <svg viewBox="0 0 24 24" fill="none" stroke="#dfc5b2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="23 4 23 10 17 10"/>
@@ -1044,7 +1044,7 @@ $settings = getSettings($pdo);
       <div id="aboutSwapView" class="supper-swap-container" style="display: none;">
         <!-- Header: Nút back ← + SUPPER ❯ USDT -->
         <div class="supper-swap-header">
-          <button type="button" class="supper-swap-back-btn" onclick="closeSUPPER AIUsdtSwapView()" aria-label="Quay lại">
+          <button type="button" class="supper-swap-back-btn" onclick="closeSupperUsdtSwapView()" aria-label="Quay lại">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
@@ -1073,8 +1073,8 @@ $settings = getSettings($pdo);
             <span class="supper-swap-rate" id="supperSwapRateDisplay">SUPPER ≈ 0.00 USDT</span>
           </div>
           <div class="supper-swap-input-row">
-            <input type="number" id="supperSwapInput" class="supper-swap-input" placeholder="0" step="any" oninput="calculateSUPPER AIToUsdt()">
-            <button type="button" class="supper-all-btn" onclick="setSUPPER AISwapAll()">ALL</button>
+            <input type="number" id="supperSwapInput" class="supper-swap-input" placeholder="0" step="any" oninput="calculateSupperToUsdt()">
+            <button type="button" class="supper-all-btn" onclick="setSupperSwapAll()">ALL</button>
           </div>
         </div>
 
@@ -1097,7 +1097,7 @@ $settings = getSettings($pdo);
         </div>
 
         <!-- Nút Xác nhận Swap (Màu kem cam ấm chuẩn ảnh) -->
-        <button type="button" id="btnConfirmSUPPER AISwap" onclick="executeSUPPER AISwap()" class="supper-confirm-swap-btn">
+        <button type="button" id="btnConfirmSupperSwap" onclick="executeSupperSwap()" class="supper-confirm-swap-btn">
           xác nhận
         </button>
       </div> <!-- /aboutSwapView -->
@@ -1840,7 +1840,7 @@ $settings = getSettings($pdo);
         <button type="button" class="btn btn-sm btn-primary" onclick="showToast('Tính năng P2P tự động mở khi liên kết Telegram cá nhân!', 'info')" style="background: #dfc5b2; color: #1e1b18; border: none; font-weight: 700;">Bán</button>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary" onclick="closeModal('p2pModal'); openSUPPER AIUsdtSwapView();" style="width: 100%; border-radius: 12px; height: 44px; font-weight: 700;">
+    <button type="button" class="btn btn-secondary" onclick="closeModal('p2pModal'); openSupperUsdtSwapView();" style="width: 100%; border-radius: 12px; height: 44px; font-weight: 700;">
       👉 Hoặc Đổi Trực Tiếp SUPPER&USDT Tại Sàn
     </button>
   </div>

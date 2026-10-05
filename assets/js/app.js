@@ -142,7 +142,7 @@ function switchTab(tabId) {
   if (tabId === 'wallet') loadWallet();
   if (tabId === 'admin') loadAdmin();
   if (tabId === 'about') {
-    closeSUPPER AIUsdtSwapView();
+    closeSupperUsdtSwapView();
     loadReferralData();
   }
 }
@@ -2097,19 +2097,19 @@ function shareReferralLink() {
 // ABOUT PAGE ACTIONS & SUPPER ❯ USDT SWAP SCREEN (IMAGES 1 & 2)
 // -------------------------------------------------------------
 
-function openSUPPER AIUsdtSwapView() {
+function openSupperUsdtSwapView() {
   const mainView = document.getElementById('aboutMainView');
   const swapView = document.getElementById('aboutSwapView');
   if (mainView && swapView) {
     mainView.style.display = 'none';
     swapView.style.display = 'flex';
   }
-  updateSUPPER AISwapUI();
+  updateSupperSwapUI();
   const scrollContainer = document.getElementById('iphoneContentScroll');
   if (scrollContainer) scrollContainer.scrollTop = 0;
 }
 
-function closeSUPPER AIUsdtSwapView() {
+function closeSupperUsdtSwapView() {
   const mainView = document.getElementById('aboutMainView');
   const swapView = document.getElementById('aboutSwapView');
   if (mainView && swapView) {
@@ -2118,7 +2118,7 @@ function closeSUPPER AIUsdtSwapView() {
   }
 }
 
-function updateSUPPER AISwapUI() {
+function updateSupperSwapUI() {
   const balEl = document.getElementById('supperSwapAvailableBal');
   const rateEl = document.getElementById('supperSwapRateDisplay');
   const inputEl = document.getElementById('supperSwapInput');
@@ -2140,10 +2140,10 @@ function updateSUPPER AISwapUI() {
     }
   }
 
-  calculateSUPPER AIToUsdt();
+  calculateSupperToUsdt();
 }
 
-function calculateSUPPER AIToUsdt() {
+function calculateSupperToUsdt() {
   const inputEl = document.getElementById('supperSwapInput');
   const receiveEl = document.getElementById('supperSwapReceiveUsdt');
   if (!inputEl || !receiveEl) return;
@@ -2156,16 +2156,16 @@ function calculateSUPPER AIToUsdt() {
   receiveEl.innerText = usdt.toFixed(6);
 }
 
-function setSUPPER AISwapAll() {
+function setSupperSwapAll() {
   const inputEl = document.getElementById('supperSwapInput');
   const userCoin = State.user ? parseFloat(State.user.coin_balance || 0) : 420560.0128;
   if (inputEl) {
     inputEl.value = userCoin;
-    calculateSUPPER AIToUsdt();
+    calculateSupperToUsdt();
   }
 }
 
-async function executeSUPPER AISwap() {
+async function executeSupperSwap() {
   if (!State.user) {
     showToast('Vui lòng đăng nhập tài khoản để quy đổi SUPPER sang USDT!', 'info');
     openModal('authModal');
@@ -2186,7 +2186,7 @@ async function executeSUPPER AISwap() {
     return;
   }
 
-  const btn = document.getElementById('btnConfirmSUPPER AISwap');
+  const btn = document.getElementById('btnConfirmSupperSwap');
   const origText = btn ? btn.innerText : 'xác nhận';
   if (btn) {
     btn.disabled = true;
@@ -2202,7 +2202,7 @@ async function executeSUPPER AISwap() {
     if (res.usdt_balance !== undefined) State.user.usdt_balance = res.usdt_balance;
 
     updateUserInterface();
-    updateSUPPER AISwapUI();
+    updateSupperSwapUI();
   } catch (err) {
     showToast(err.message || 'Lỗi quy đổi, vui lòng thử lại', 'error');
   } finally {
@@ -2264,7 +2264,7 @@ function claimTaskReward(taskId, amount) {
   showToast(`Đã nhận thành công +${amount} SUPPER vào ví!`, 'success');
   triggerHaptic('medium');
   updateUserInterface();
-  updateSUPPER AISwapUI();
+  updateSupperSwapUI();
 }
 
 // Global Exports
@@ -2282,12 +2282,18 @@ window.copyReferralLink = copyReferralLink;
 window.shareReferralLink = shareReferralLink;
 
 // About Page & SUPPER AI Swap Exports
-window.openSUPPER AIUsdtSwapView = openSUPPER AIUsdtSwapView;
-window.closeSUPPER AIUsdtSwapView = closeSUPPER AIUsdtSwapView;
-window.updateSUPPER AISwapUI = updateSUPPER AISwapUI;
-window.calculateSUPPER AIToUsdt = calculateSUPPER AIToUsdt;
-window.setSUPPER AISwapAll = setSUPPER AISwapAll;
-window.executeSUPPER AISwap = executeSUPPER AISwap;
+window.openSupperUsdtSwapView = openSupperUsdtSwapView;
+window.openEdenUsdtSwapView = openSupperUsdtSwapView;
+window.closeSupperUsdtSwapView = closeSupperUsdtSwapView;
+window.closeEdenUsdtSwapView = closeSupperUsdtSwapView;
+window.updateSupperSwapUI = updateSupperSwapUI;
+window.updateEdenSwapUI = updateSupperSwapUI;
+window.calculateSupperToUsdt = calculateSupperToUsdt;
+window.calculateEdenToUsdt = calculateSupperToUsdt;
+window.setSupperSwapAll = setSupperSwapAll;
+window.setEdenSwapAll = setSupperSwapAll;
+window.executeSupperSwap = executeSupperSwap;
+window.executeEdenSwap = executeSupperSwap;
 window.openTeamModal = openTeamModal;
 window.openTasksModal = openTasksModal;
 window.openGuideModal = openGuideModal;
