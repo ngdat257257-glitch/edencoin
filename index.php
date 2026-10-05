@@ -381,8 +381,8 @@ $settings = getSettings($pdo);
           </div>
         </div>
 
-        <!-- Ba Nút Tròn Thao Tác: Hóa đơn, Mua lại, lời hứa -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; text-align: center;">
+        <!-- Bốn Nút Tròn Thao Tác: Hóa đơn, tạm thay đổi (Nạp USDT), Mua lại, lời hứa -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; text-align: center;">
           
           <!-- Nút 1: Hóa đơn -->
           <div onclick="openInvoiceView(event)" style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
@@ -395,6 +395,17 @@ $settings = getSettings($pdo);
               </svg>
             </div>
             <span class="action-btn-label" style="font-size: 0.85rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px;">Hóa đơn</span>
+          </div>
+
+          <!-- Nút 2: tạm thay đổi (Nạp USDT) -->
+          <div onclick="openDepositModal()" style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+            <div class="action-btn-circle" style="width: 58px; height: 58px; border-radius: 50%; border: 1.5px solid rgba(234, 217, 207, 0.32); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.2s;">
+              <span class="badge-new" style="position: absolute; top: -6px; right: -4px; border: 1px solid rgba(211, 184, 166, 0.7); background: #000; color: #d3b8a6 !important; border-radius: 10px; font-size: 0.62rem; font-weight: 700; padding: 1px 6px; line-height: 1.2;">new</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#ead9cf" stroke="#ead9cf" stroke-width="1">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <span class="action-btn-label" style="font-size: 0.82rem; font-weight: 500; color: #ead9cf !important; margin-top: 8px; line-height: 1.25; text-align: center;">tạm thay<br>đổi</span>
           </div>
 
           <!-- Nút 3: Mua lại (Mở màn hình Mua lại chuẩn ảnh) -->
