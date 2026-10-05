@@ -752,11 +752,11 @@ function updateUserInterface() {
       el.innerText = val.toFixed(6);
     });
 
-    // 👥 Team-A: Hiển thị số coin người dùng khai thác được
+    // BXH EDEN: Hiển thị số coin người dùng khai thác được ở Top 1
     const userCoinBal = Number(State.user.coin_balance || 0);
-    const displayMinedCoin = userCoinBal > 0 
+    const displayMinedCoin = userCoinBal > 12580 
       ? userCoinBal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-      : '1,555.58';
+      : '12,580.00';
     document.querySelectorAll('.user-mined-coin-display').forEach(el => {
       el.innerText = displayMinedCoin;
     });
@@ -987,9 +987,9 @@ async function loadDashboard() {
       }
     }
 
-    // Cập nhật số coin khai thác được lên Team-A và các thẻ xếp hạng
+    // Cập nhật số coin khai thác được lên BXH EDEN và các thẻ xếp hạng
     const minedCoins = (data.coin_balance !== undefined) ? Number(data.coin_balance) : (State.user ? Number(State.user.coin_balance || 0) : 0);
-    const formattedMined = minedCoins > 0 ? minedCoins.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '1,555.58';
+    const formattedMined = minedCoins > 12580 ? minedCoins.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '12,580.00';
     document.querySelectorAll('.user-mined-coin-display').forEach(el => {
       el.innerText = formattedMined;
     });
@@ -2496,18 +2496,23 @@ window.claimTaskReward = claimTaskReward;
 
 function handleUserAccountAction() {
   if (State.user) {
-    const msg = `Tài khoản hiện tại: ${State.user.email} (UID: ${State.user.uid || '120850'})\n\nBạn có muốn đăng xuất khỏi hệ thống không?`;
-    const tg = window.Telegram && window.Telegram.WebApp;
-    if (tg && tg.initData && typeof tg.showConfirm === 'function' && tg.isVersionAtLeast && tg.isVersionAtLeast('6.2')) {
-      tg.showConfirm(msg, (ok) => { if (ok) handleLogout(); });
-    } else if (confirm(msg)) {
-      handleLogout();
-    }
+    const nameEl = document.getElementById('settingsModalUserName');
+    if (nameEl) nameEl.innerText = State.user.name || State.user.telegram_username || (State.user.id === 'user_demo' ? 'evansTi' : 'Thợ Đào');
+    const emailEl = document.getElementById('settingsModalUserEmail');
+    if (emailEl) emailEl.innerText = State.user.email || (State.user.telegram_id ? `@${State.user.telegram_username || State.user.telegram_id}` : 'user@supperai.com');
+    openModal('accountSettingsModal');
   } else {
     openModal('authModal');
   }
 }
 window.handleUserAccountAction = handleUserAccountAction;
+
+function confirmLogoutFromSettings() {
+  closeModal('accountSettingsModal');
+  handleLogout();
+  showToast('Đã đăng xuất tài khoản an toàn!', 'success');
+}
+window.confirmLogoutFromSettings = confirmLogoutFromSettings;
 
 // ============================================================
 // WALLET ADD & SELECT NETWORK FLOW (CHUẨN ẢNH 1 VÀ ẢNH 2)
@@ -2630,7 +2635,6 @@ function submitAddNewWalletAddress() {
 }
 
 function deleteWalletAddress(idx) {
-  if (!confirm('Bạn có chắc chắn muốn xóa địa chỉ ví này?')) return;
   const list = getSavedWalletAddresses();
   if (idx >= 0 && idx < list.length) {
     list.splice(idx, 1);

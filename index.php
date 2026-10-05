@@ -729,8 +729,9 @@ $settings = getSettings($pdo);
         </div>
 
         <!-- 3. BẢNG XẾP HẠNG ĐỘI (CHUẨN ẢNH 1) -->
+        <!-- 3. BẢNG XẾP HẠNG KHAI THÁC EDEN (TOP 10) -->
         <div class="about-leaderboard-section">
-          <h2 class="about-lb-title">Bảng xếp hạng đội</h2>
+          <h2 class="about-lb-title">Bảng xếp hạng khai thác EDEN</h2>
           <div class="about-lb-subrow">
             <span class="about-lb-subtitle">Phần thưởng được phát hành một lần mỗi tuần!</span>
             <button type="button" class="about-lb-detail-btn" onclick="openLeaderboardDetailModal()" style="color: #000000 !important;">
@@ -760,9 +761,9 @@ $settings = getSettings($pdo);
                 </svg>
               </div>
               <div class="podium-username">Koye</div>
-              <div class="podium-team-count">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                <span>722</span>
+              <div class="podium-team-count" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(223, 197, 178, 0.12); border: 1px solid rgba(223, 197, 178, 0.35); border-radius: 20px; padding: 3px 10px; font-weight: 700; color: #dfc5b2;">
+                <span>7,420.00</span>
+                <span style="font-size: 0.72rem; color: #eab308; font-weight: 800;">EDEN</span>
               </div>
             </div>
 
@@ -785,9 +786,9 @@ $settings = getSettings($pdo);
                 </svg>
               </div>
               <div class="podium-username">luann4ezz</div>
-              <div class="podium-team-count">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                <span class="user-mined-coin-display">1,555.58</span>
+              <div class="podium-team-count" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.45); border-radius: 20px; padding: 3px 12px; font-weight: 800; color: #eab308;">
+                <span class="user-mined-coin-display">12,580.00</span>
+                <span style="font-size: 0.72rem; color: #fff; font-weight: 800;">EDEN</span>
               </div>
             </div>
 
@@ -810,14 +811,14 @@ $settings = getSettings($pdo);
                 </svg>
               </div>
               <div class="podium-username">Arsalanmax</div>
-              <div class="podium-team-count">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                <span>705</span>
+              <div class="podium-team-count" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(251, 146, 60, 0.12); border: 1px solid rgba(251, 146, 60, 0.35); border-radius: 20px; padding: 3px 10px; font-weight: 700; color: #fb923c;">
+                <span>5,890.00</span>
+                <span style="font-size: 0.72rem; color: #eab308; font-weight: 800;">EDEN</span>
               </div>
             </div>
           </div>
 
-          <!-- Danh Sách Xếp Hạng Bên Dưới (Rows) -->
+          <!-- Danh Sách Xếp Hạng Bên Dưới (Top 10 Thợ Đào) -->
           <div class="about-rank-list">
             <!-- Row 1 -->
             <div class="about-rank-row">
@@ -828,9 +829,9 @@ $settings = getSettings($pdo);
                 </div>
                 <span class="about-rank-user">luann4ezz</span>
               </div>
-              <div class="about-rank-right">
-                <span class="about-rank-team-tag">👥 Team-A</span>
-                <span class="about-rank-count user-mined-coin-display">1,555.58</span>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(234,179,8,0.15); color: #eab308; border: 1px solid rgba(234,179,8,0.35); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;"><span class="user-mined-coin-display">12,580.00</span> <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
               </div>
             </div>
 
@@ -843,9 +844,9 @@ $settings = getSettings($pdo);
                 </div>
                 <span class="about-rank-user">Koye</span>
               </div>
-              <div class="about-rank-right">
-                <span class="about-rank-team-tag">👥 Team-A</span>
-                <span class="about-rank-count">722</span>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(223,197,178,0.12); color: #dfc5b2; border: 1px solid rgba(223,197,178,0.3); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">7,420.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
               </div>
             </div>
 
@@ -858,9 +859,9 @@ $settings = getSettings($pdo);
                 </div>
                 <span class="about-rank-user">Arsalanmax</span>
               </div>
-              <div class="about-rank-right">
-                <span class="about-rank-team-tag">👥 Team-A</span>
-                <span class="about-rank-count">705</span>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">5,890.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
               </div>
             </div>
 
@@ -873,9 +874,9 @@ $settings = getSettings($pdo);
                 </div>
                 <span class="about-rank-user">CryptoKing_VN</span>
               </div>
-              <div class="about-rank-right">
-                <span class="about-rank-team-tag">👥 Team-B</span>
-                <span class="about-rank-count">612</span>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">4,650.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
               </div>
             </div>
 
@@ -888,11 +889,88 @@ $settings = getSettings($pdo);
                 </div>
                 <span class="about-rank-user">ThoDao_VIP</span>
               </div>
-              <div class="about-rank-right">
-                <span class="about-rank-team-tag">👥 Team-C</span>
-                <span class="about-rank-count">489</span>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">3,920.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
               </div>
             </div>
+
+            <!-- Row 6 -->
+            <div class="about-rank-row">
+              <div class="about-rank-left">
+                <div class="about-rank-num num-default">6</div>
+                <div class="about-rank-avatar">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <span class="about-rank-user">Golden_Miner</span>
+              </div>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">3,210.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
+              </div>
+            </div>
+
+            <!-- Row 7 -->
+            <div class="about-rank-row">
+              <div class="about-rank-left">
+                <div class="about-rank-num num-default">7</div>
+                <div class="about-rank-avatar">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <span class="about-rank-user">Alex_Dragon</span>
+              </div>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">2,840.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
+              </div>
+            </div>
+
+            <!-- Row 8 -->
+            <div class="about-rank-row">
+              <div class="about-rank-left">
+                <div class="about-rank-num num-default">8</div>
+                <div class="about-rank-avatar">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <span class="about-rank-user">Satoshi_VN</span>
+              </div>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">2,350.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
+              </div>
+            </div>
+
+            <!-- Row 9 -->
+            <div class="about-rank-row">
+              <div class="about-rank-left">
+                <div class="about-rank-num num-default">9</div>
+                <div class="about-rank-avatar">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <span class="about-rank-user">Blockchain_Pro</span>
+              </div>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">1,980.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
+              </div>
+            </div>
+
+            <!-- Row 10 -->
+            <div class="about-rank-row">
+              <div class="about-rank-left">
+                <div class="about-rank-num num-default">10</div>
+                <div class="about-rank-avatar">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <span class="about-rank-user">Cyber_Node</span>
+              </div>
+              <div class="about-rank-right" style="display: flex; align-items: center; gap: 8px;">
+                <span class="about-rank-team-tag" style="background: rgba(255,255,255,0.06); color: #dfc5b2; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800;">EDEN</span>
+                <span class="about-rank-count" style="font-weight: 700; color: #fff;">1,520.00 <span style="font-size: 0.75rem; color: #eab308;">EDEN</span></span>
+              </div>
+            </div>
+
+          </div>
           </div>
         </div>
       </div> <!-- /aboutMainView -->
@@ -1246,6 +1324,81 @@ $settings = getSettings($pdo);
     <!-- Chú thích chân trang: Mining results are harvested every 24 hours -->
     <div style="font-size: 0.78rem; color: #8a8793; text-align: center;">
       Mining results are harvested every 24 hours.
+    </div>
+
+  </div>
+<!-- Modal 0: Cài Đặt & Đăng Xuất Tài Khoản (Đồng bộ giao diện) -->
+<div id="accountSettingsModal" class="modal-overlay">
+  <div class="modal-content" style="max-width: 440px; border: 1px solid rgba(223, 197, 178, 0.35); box-shadow: 0 10px 40px rgba(0,0,0,0.85); background: #12131a; border-radius: 20px;">
+    <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 14px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(223, 197, 178, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(223, 197, 178, 0.3);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dfc5b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0;">Cài Đặt & Tài Khoản</h3>
+          <span style="font-size: 0.76rem; color: #8a8793;">Quản lý tài khoản cá nhân & phiên làm việc</span>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('accountSettingsModal')">&times;</button>
+    </div>
+
+    <!-- Thông tin tài khoản -->
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; margin: 16px 0;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 48px; height: 48px; border-radius: 50%; overflow: hidden; background: #000; border: 1.5px solid #dfc5b2; flex-shrink: 0;">
+          <img class="user-avatar-img" src="assets/images/user_avatar_wreath.png" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span id="settingsModalUserName" style="font-weight: 700; color: #fff; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">evansTi</span>
+            <span class="user-level-display" style="font-size: 0.7rem; background: #dfc5b2; color: #1e1b18; padding: 1px 8px; border-radius: 10px; font-weight: 700;">Level 1</span>
+          </div>
+          <div style="font-size: 0.8rem; color: #8a8793; margin-top: 3px; font-family: var(--font-mono);">
+            UID: <span class="user-uid-display" style="color: #dfc5b2; font-weight: 600;">120850</span>
+          </div>
+          <div style="font-size: 0.78rem; color: #6b7280; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 2px;">
+            <span id="settingsModalUserEmail">user@supperai.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" onclick="triggerAvatarUpload(); closeModal('accountSettingsModal');" style="background: rgba(223,197,178,0.12); border: 1px solid rgba(223,197,178,0.3); color: #dfc5b2; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+          📷 Đổi ảnh đại diện
+        </button>
+        <span style="font-size: 0.76rem; color: #10b981; display: flex; align-items: center; gap: 4px;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+          Đang hoạt động
+        </span>
+      </div>
+    </div>
+
+    <!-- Hộp xác nhận đăng xuất đồng bộ giao diện -->
+    <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+      <div style="display: flex; align-items: center; gap: 8px; color: #f87171; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Đăng Xuất Khỏi Tài Khoản?</span>
+      </div>
+      <p style="font-size: 0.8rem; color: #d1d5db; margin: 0 0 14px; line-height: 1.4;">
+        Sau khi đăng xuất, bạn có thể đăng nhập lại bất cứ lúc nào bằng tài khoản hoặc qua Telegram Mini App.
+      </p>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" onclick="confirmLogoutFromSettings()" style="flex: 1; background: linear-gradient(135deg, #ef4444, #dc2626); border: none; color: #fff; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.88rem; cursor: pointer; box-shadow: 0 4px 14px rgba(239,68,68,0.35); display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>Đăng Xuất</span>
+        </button>
+        <button type="button" onclick="closeModal('accountSettingsModal')" style="flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 14px; border-radius: 10px; font-weight: 600; font-size: 0.88rem; cursor: pointer;">
+          Hủy Bỏ
+        </button>
+      </div>
     </div>
 
   </div>
@@ -1893,12 +2046,12 @@ $settings = getSettings($pdo);
   </div>
 </div>
 
-<!-- Modal: Chi Tiết Thưởng Bảng Xếp Hạng Đội -->
+<!-- Modal: Chi Tiết Thưởng Bảng Xếp Hạng Khai Thác EDEN -->
 <div id="leaderboardDetailModal" class="modal-overlay" style="z-index: 10005;">
   <div class="modal-content" style="max-width: 440px; padding: 24px 20px; border-radius: 20px; background: #111219; border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 20px 50px rgba(0,0,0,0.92);">
     <div class="modal-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
       <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
-        <span>🏆</span> Chi Tiết Thưởng Đội Tuần
+        <span>🏆</span> Chi Tiết Thưởng Khai Thác EDEN
       </h3>
       <button class="modal-close" onclick="closeModal('leaderboardDetailModal')" style="background: none; border: none; color: #8e8c94; font-size: 1.5rem; cursor: pointer;">&times;</button>
     </div>
@@ -1909,19 +2062,19 @@ $settings = getSettings($pdo);
     <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px;">
       <div style="background: #171822; border-left: 4px solid #ffb800; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
         <span style="font-weight: 700; color: #ffb800;">🥇 TOP 1 (Vô Địch)</span>
-        <strong style="color: #fff; font-family: var(--font-mono);">5,000 USDT + 50k SUPPER</strong>
+        <strong style="color: #fff; font-family: var(--font-mono);">5,000 USDT + 50k EDEN</strong>
       </div>
       <div style="background: #171822; border-left: 4px solid #a5b4fc; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
         <span style="font-weight: 700; color: #a5b4fc;">🥈 TOP 2 (Á Quân)</span>
-        <strong style="color: #fff; font-family: var(--font-mono);">2,500 USDT + 25k SUPPER</strong>
+        <strong style="color: #fff; font-family: var(--font-mono);">2,500 USDT + 25k EDEN</strong>
       </div>
       <div style="background: #171822; border-left: 4px solid #fb923c; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
         <span style="font-weight: 700; color: #fb923c;">🥉 TOP 3 (Quý Quân)</span>
-        <strong style="color: #fff; font-family: var(--font-mono);">1,000 USDT + 10k SUPPER</strong>
+        <strong style="color: #fff; font-family: var(--font-mono);">1,000 USDT + 10k EDEN</strong>
       </div>
       <div style="background: #171822; border-left: 4px solid #6b7280; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
         <span style="font-weight: 600; color: #d1cfd8;">🎖️ TOP 4 - TOP 10</span>
-        <strong style="color: #fff; font-family: var(--font-mono);">200 USDT mỗi đội</strong>
+        <strong style="color: #fff; font-family: var(--font-mono);">200 USDT + 2k EDEN mỗi thợ đào</strong>
       </div>
     </div>
     <button type="button" class="btn btn-primary" onclick="closeModal('leaderboardDetailModal')" style="width: 100%; background: #dfc5b2; color: #1e1b18; border: none; font-weight: 700; border-radius: 12px; height: 44px;">
